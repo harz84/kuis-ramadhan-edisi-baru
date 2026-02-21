@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)</title>
+    <title>Kuis Ramadhan 2 1447 H</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gunjala+Gondi&family=Roboto:wght@400;700&family=Signika:wght@400;700&family=Kanit&family=Acme&display=swap" rel="stylesheet">
@@ -98,7 +98,7 @@
             <img id="timerIcon" src="https://img.icons8.com/ios-filled/50/2E4A47/hourglass.png" alt="Hourglass">
             <span id="timer">03:00</span> <!-- HTML Display Updated -->
         </div>
-        <h1 id="judulGame">Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)</h1>
+        <h1 id="judulGame">Kuis Ramadhan 1447 H</h1>
         <p id="petunjuk">Selamat datang di Kuis Ramadhan!</p>
         <div id="startScreen">
             <input type="text" id="namaPeserta" placeholder="Masukkan Nama Anda" style="padding: 10px; margin-bottom: 15px; font-size: 16px; border-radius: 8px; border: none; width: 80%; max-width: 300px; text-align: center;"><br>
@@ -293,7 +293,7 @@
             else if (skorAkhir <= 84) { gameOverSoundFile = 'alh.mp3'; komentar = "Mantap....🫶🏻"; warnaSkor = "#FFA500"; }
             else { gameOverSoundFile = 'masy.mp3'; komentar = "Kamu Luar Biasa...👍🏻👍🏻👍🏻"; warnaSkor = "#008000"; }
 
-            document.getElementById("judulGame").textContent = "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)";
+            document.getElementById("judulGame").textContent = "Kuis Ramadhan Edisi 1447 H";
              document.getElementById("petunjuk").innerHTML = `
                 <span id="skorAkhir" style="color: ${warnaSkor};">Skor Akhir Anda: ${skorAkhir.toFixed(0)}%</span><br>
                 Benar: ${skorBenar}<br>Salah: ${skorSalah}<br><br>${komentar}
@@ -348,7 +348,7 @@
              if(timerInterval) clearInterval(timerInterval); timerInterval = null;
              document.getElementById("skorBenar").textContent = "0"; document.getElementById("skorSalah").textContent = "0";
              const oldLearnButton = document.getElementById("learnMoreButton"); if (oldLearnButton) oldLearnButton.remove();
-             document.getElementById("judulGame").textContent = "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)";
+             document.getElementById("judulGame").textContent = "Kuis Ramadhan 2 1447 H";
              document.getElementById("petunjuk").innerHTML = "Selamat datang, " + namaUser + "! Bersiaplah...";
              document.getElementById("petunjuk").style.color = "#333";
              document.getElementById("skor").style.display = "none";
