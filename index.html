@@ -120,23 +120,100 @@
     <div id="copyright">© Mas Har</div>
     <script>
         // --- Question Data ---
+        // --- Question Data ---
         const dataTebakan = [
-            { deskripsi: "Kapan waktu yang dibolehkan (jaiz) untuk mulai membayar Zakat Fithri, sebagaimana dipraktikkan oleh sebagian sahabat?", jawaban: "Satu atau dua hari sebelum Hari Raya Idul Fithri", pilihan: ["Satu atau dua hari sebelum Hari Raya Idul Fithri", "Sejak pertengahan bulan Ramadhan", "Hanya pada malam Idul Fithri setelah matahari terbenam", "Sejak awal bulan Ramadhan"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Berdasarkan hadits Ibnu Umar, Zakat Fithri diwajibkan atas setiap muslim Siapakah yang tidak termasuk dalam kewajiban ini secara langsung?", jawaban: "Janin yang masih dalam kandungan", pilihan: ["Anak kecil yang belum baligh", "Seorang budak muslim", "Janin yang masih dalam kandungan", "Orang dewasa yang mampu secara finansial"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Apa ukuran standar Zakat Fithri yang harus dikeluarkan untuk setiap jiwa menurut hadits?", jawaban: "Satu sha' dari makanan pokok setempat", pilihan: ["2.5 kilogram beras atau gandum", "Satu sha' dari makanan pokok setempat", "Sejumlah uang yang setara dengan harga 3 kg kurma", "Empat genggam tangan orang dewasa (mud) gandum saja"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Seseorang terlambat membayar Zakat Fithri hingga setelah Shalat Idul Fithri dilaksanakan Apakah ia masih dituntut untuk membayarnya?", jawaban: "Ya, wajib membayarnya sebagai qadha meskipun statusnya menjadi sedekah biasa", pilihan: ["Ya, wajib membayarnya sebagai qadha meskipun statusnya menjadi sedekah biasa", "Tidak perlu, karena waktunya sudah habis dan kewajibannya gugur", "Dianjurkan saja, tidak wajib, sebagai pengganti", "Boleh diganti dengan puasa sunnah"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Sesuai sunnah, apa yang sebaiknya dilakukan sebelum berangkat untuk Shalat Idul Fithri?", jawaban: "Memakan beberapa butir kurma dalam jumlah ganjil", pilihan: ["Berpuasa hingga selesai shalat", "Memakan beberapa butir kurma dalam jumlah ganjil", "Tidak makan apapun hingga pulang dari shalat", "Memperbanyak tidur agar fit saat shalat"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Salah satu pendapat kuat menyatakan hukum Shalat Idul Fithri adalah Fardhu 'Ain Pendapat ini didasarkan pada riwayat yang menunjukkan perintah Rasulullah ﷺ kepada siapa untuk keluar menuju tempat shalat Id?", jawaban: "Semua kalangan termasuk wanita (haid, gadis pingitan) untuk hadir", pilihan: ["Hanya laki-laki dewasa yang mampu", "Seluruh penduduk Madinah tanpa terkecuali", "Para sahabat senior dan ahli Badar", "Semua kalangan termasuk wanita (haid, gadis pingitan) untuk hadir"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Hadits riwayat Abu Sa'id Al-Khudri menyebutkan beberapa jenis makanan yang biasa digunakan untuk Zakat Fithri di zaman Nabi ﷺ Manakah di antara berikut yang tidak termasuk dalam daftar tersebut?", jawaban: "Tepung (Daqiq)", pilihan: ["Gandum (Sya'ir)", "Kurma (Tamr)", "Keju kering (Aqith)", "Tepung (Daqiq)"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Berapa jumlah total takbir yang dilakukan pada rakaat pertama Shalat Idul Fithri, termasuk takbiratul ihram, menurut pendapat mayoritas ulama?", jawaban: "Delapan kali", pilihan: ["Enam kali", "Tujuh kali", "Delapan kali", "Sembilan kali"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Apa yang disunnahkan untuk dilakukan saat menempuh perjalanan pergi dan pulang dari tempat Shalat Id?", jawaban: "Melewati jalan yang berbeda antara pergi dan pulang", pilihan: ["Menggunakan kendaraan yang sama persis", "Melewati jalan yang berbeda antara pergi dan pulang", "Berjalan kaki saat pergi dan naik kendaraan saat pulang", "Membaca Al-Qur'an dengan suara keras sepanjang jalan"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Apa status adzan dan iqamah dalam pelaksanaan Shalat Idul Fithri?", jawaban: "Tidak disyariatkan (tidak ada adzan dan iqamah)", pilihan: ["Wajib dikumandangkan seperti shalat fardhu", "Sunnah dikumandangkan sebelum shalat dimulai", "Makruh jika dikumandangkan", "Tidak disyariatkan (tidak ada adzan dan iqamah)"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Bolehkah Zakat Fithri dari beberapa orang (misalnya satu keluarga) diberikan hanya kepada satu orang fakir atau miskin?", jawaban: "Ya, hal tersebut diperbolehkan", pilihan: ["Ya, hal tersebut diperbolehkan", "Tidak boleh, harus dibagi rata beberapa orang miskin", "Hanya boleh jika orang miskin tersebut kepala keluarga", "Makruh, sebaiknya dibagikan ke banyak orang"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Bagaimana hukumnya melaksanakan shalat sunnah (misalnya Tahiyatul Masjid jika di masjid, atau shalat sunnah lainnya) sesaat sebelum imam memulai Shalat Id di tempat pelaksanaan?", jawaban: "Tidak ada tuntunan shalat sunnah sebelum Shalat Id dimulai", pilihan: ["sunnah", "sunnah muakkadah", "Makruh hukumnya", "Tidak ada tuntunan shalat sunnah sebelum Shalat Id dimulai"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Terdapat anjuran waktu pelaksanaan untuk Shalat Idul Fithri dan Idul Adha Bagaimana anjurannya?", jawaban: "Mengakhirkan Shalat Idul Fithri dan menyegerakan Shalat Idul Adha", pilihan: ["Menyegerakan Shalat Idul Fithri dan mengakhirkan Shalat Idul Adha", "Menyegerakan kedua shalat tersebut di awal waktu", "Mengakhirkan Shalat Idul Fithri dan menyegerakan Shalat Idul Adha", "Mengakhirkan kedua shalat tersebut"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Jika Hari Raya Idul Fithri jatuh bertepatan dengan hari Jum'at, bagaimana hukum Shalat Jum'at bagi orang yang sudah melaksanakan Shalat Id?", jawaban: "Gugur kewajiban Shalat Jum'at baginya (tidak wajib), namun imam tetap menyelenggarakannya", pilihan: ["Gugur kewajiban Shalat Jum'at baginya (tidak wajib), namun imam tetap menyelenggarakannya", "Tetap wajib melaksanakan Shalat Jum'at", "Wajib mengganti Shalat Jum'at dengan Shalat Dzuhur", "Shalat Id sudah menggantikan Shalat Jum'at dan Shalat Dzuhur sekaligus"], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" },
-            { deskripsi: "Apa ucapan selamat (tahniah) di hari raya Idul Fithri yang pernah dicontohkan langsung oleh para sahabat?", jawaban: "\"Taqabbalallahu minna wa minkum\"", pilihan: ["\"Minal 'aidin wal faizin\"", "\"Selamat Hari Raya, mohon maaf lahir dan batin\"", "\"Eid Mubarak, barakallahu fiikum\"", "\"Taqabbalallahu minna wa minkum\""], judul: "Kuis Ramadhan 2 (Edisi Zakat dan Idul Fitri)", kategori: "ramadhan" }
+            { 
+                deskripsi: "FIKIH NIAT: Hadits Hafshah mewajibkan niat sebelum terbit fajar (Tabyitun Niyyah). Jika seseorang tertidur dari sesudah Asar hingga azan Subuh keesokan harinya, dan ia belum terbesit niat untuk puasa Ramadhan hari itu, apa hukum puasanya pada hari tersebut menurut pendapat mayoritas ulama (Jumhur)?", 
+                jawaban: "Puasanya tidak sah, ia wajib menahan diri dari makan minum seharian itu, dan wajib mengqadhanya di hari lain.", 
+                pilihan: ["Puasanya sah karena niat di awal bulan Ramadhan sudah mencukupi untuk sebulan penuh.", "Puasanya tidak sah, ia wajib menahan diri dari makan minum seharian itu, dan wajib mengqadhanya di hari lain.", "Puasanya sah asalkan ia langsung berniat seketika ia bangun setelah azan Subuh.", "Puasanya tidak sah dan ia wajib membayar fidyah tanpa perlu mengqadha."], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "KERINGANAN (RUKHSHAH): Menurut fatwa yang shahih dari Ibnu Abbas dan Ibnu Umar radhiyallahu 'anhum, apakah kewajiban bagi wanita hamil dan menyusui yang tidak berpuasa Ramadhan karena khawatir atas kesehatan fisiknya atau bayinya?", 
+                jawaban: "Hanya wajib membayar fidyah (memberi makan orang miskin) tanpa qadha.", 
+                pilihan: ["Wajib qadha (mengganti puasa) saja.", "Wajib qadha dan membayar fidyah sekaligus.", "Hanya wajib membayar fidyah (memberi makan orang miskin) tanpa qadha.", "Tidak wajib qadha dan tidak wajib fidyah."], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "PEMBATAL PUASA: Dari berbagai tindakan medis berikut ini, manakah yang MEMBATALKAN puasa menurut fatwa para ulama (seperti Lajnah Daimah dan Syaikh Ibnu Utsaimin)?", 
+                jawaban: "Suntikan nutrisi/infus pengganti makanan (Mughaddziyah)", 
+                pilihan: ["Menggunakan obat tetes mata atau telinga", "Menggunakan inhaler untuk penderita asma", "Suntikan nutrisi/infus pengganti makanan (Mughaddziyah)", "Suntikan vaksin atau anestesi (bius) lokal"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "FIKIH WAKTU IFTAR: Di masa hidup Nabi ﷺ (riwayat Asma' binti Abu Bakar), para sahabat pernah berbuka puasa karena langit sangat mendung, mereka mengira matahari sudah tenggelam. Namun tak lama kemudian matahari terlihat kembali. Apa yang diperintahkan kepada mereka?", 
+                jawaban: "Menahan diri hingga Maghrib dan wajib mengqadha puasa hari tersebut", 
+                pilihan: ["Melanjutkan makan karena mereka tidak sengaja", "Memuntahkan kembali makanan tersebut dan puasa batal", "Menahan diri hingga Maghrib dan wajib mengqadha puasa hari tersebut", "Puasanya sah dan dilanjutkan hingga Maghrib tanpa perlu qadha"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "ASBABUL WURUD: Rasulullah ﷺ pernah bersabda: \"Bukanlah termasuk kebaikan berpuasa saat dalam safar (perjalanan).\" Dalam kondisi (sebab) apakah Nabi ﷺ mengucapkan hadits tersebut?", 
+                jawaban: "Saat melihat ada kerumunan orang memayungi seorang musafir yang pingsan/kepayahan karena puasa", 
+                pilihan: ["Saat melihat ada sahabat yang muntah-muntah di atas untanya", "Saat melihat ada kerumunan orang memayungi seorang musafir yang pingsan/kepayahan karena puasa", "Saat pasukan muslimin sedang bersiap untuk Perang Badar", "Saat para sahabat kehabisan bekal air di tengah padang pasir"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "SEJARAH RAMADHAN: Peristiwa agung Fathu Makkah (Pembebasan kota Makkah) terjadi pada bulan Ramadhan tahun 8 Hijriyah. Tepatnya pada tanggal berapakah peristiwa bersejarah tersebut terjadi?", 
+                jawaban: "20 Ramadhan", 
+                pilihan: ["17 Ramadhan", "10 Ramadhan", "20 Ramadhan", "27 Ramadhan"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "FIKIH TARAWIH: Pada masa kekhalifahan siapakah kaum muslimin pertama kali dikumpulkan kembali secara berjamaah di bawah satu imam untuk shalat Tarawih selama sebulan penuh, setelah di zaman Nabi ﷺ sempat dihentikan agar tidak dianggap wajib?", 
+                jawaban: "Umar bin Al-Khattab radhiyallahu 'anhu", 
+                pilihan: ["Abu Bakar Ash-Shiddiq radhiyallahu 'anhu", "Umar bin Al-Khattab radhiyallahu 'anhu", "Utsman bin Affan radhiyallahu 'anhu", "Ali bin Abi Thalib radhiyallahu 'anhu"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "KAFFARAH (DENDA): Seorang sahabat melapor kepada Nabi ﷺ bahwa ia sengaja berjima' (berhubungan suami istri) di siang hari Ramadhan. Nabi menetapkan Kaffarah yang berurutan. Jika ia tidak mampu memerdekakan budak, apa urutan denda selanjutnya?", 
+                jawaban: "Berpuasa 2 bulan berturut-turut", 
+                pilihan: ["Memberi makan 60 orang miskin", "Berpuasa 60 hari namun boleh tidak berturut-turut", "Berpuasa 2 bulan berturut-turut", "Membayar denda uang seharga 100 ekor unta"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "FIKIH BEKAM: Terdapat hadits \"Telah berbuka (batal) orang yang membekam dan yang dibekam\". Namun, mayoritas ulama (Jumhur) menetapkan berbekam tidak membatalkan puasa. Dalil shahih apakah dari Ibnu Abbas yang menghapus (nasakh) larangan tersebut?", 
+                jawaban: "Nabi ﷺ berbekam saat beliau sedang ihram dan sedang berpuasa", 
+                pilihan: ["Nabi ﷺ memerintahkan sahabat menelan ludah setelah dibekam", "Nabi ﷺ berbekam saat beliau sedang ihram dan sedang berpuasa", "Nabi ﷺ membayar fidyah setelah beliau berbekam", "Ibnu Abbas berkata bekam hanya batal jika darahnya tertelan"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "PRAKTIK FIDYAH: Sahabat Anas bin Malik di akhir hayatnya sudah sangat tua dan tidak mampu berpuasa, sehingga beliau menunaikan fidyah. Bagaimana cara membayar fidyah yang dipraktikkan oleh Anas bin Malik yang menjadi rujukan para ulama?", 
+                jawaban: "Mengumpulkan 30 orang miskin di akhir bulan Ramadhan, lalu menjamu mereka makan besar (daging dan roti) sampai kenyang", 
+                pilihan: ["Memberikan uang tunai kepada pengurus masjid di awal bulan", "Membagikan beras mentah 1 kilogram setiap hari kepada tetangga", "Mengumpulkan 30 orang miskin di akhir bulan Ramadhan, lalu menjamu mereka makan besar (daging dan roti) sampai kenyang", "Menyembelih seekor kambing dan memakannya sendiri bersama keluarga"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "ZAKAT FITRAH: Dalam riwayat Abu Sa'id al-Khudri radhiyallahu 'anhu, beliau menyebutkan beberapa jenis makanan pokok yang lazim dikeluarkan sebagai Zakat Fitrah di zaman Nabi ﷺ. Manakah di bawah ini yang TIDAK disebutkan secara tekstual dalam hadits tersebut?", 
+                jawaban: "Beras merah (Ruz)", 
+                pilihan: ["Gandum kering (Sya'ir)", "Kismis (Zabib)", "Keju kering / Susu kering (Aqith)", "Beras merah (Ruz)"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "HUKUM QADHA: Dari Aisyah radhiyallahu 'anha, Rasulullah ﷺ bersabda: \"Barangsiapa meninggal dunia dan ia masih memiliki hutang puasa (karena udzur lalu belum sempat qadha), maka...\" Apa kelanjutan hadits (solusi) tersebut?", 
+                jawaban: "\"...walinya (ahli warisnya) berpuasa untuknya.\"", 
+                pilihan: ["\"...diambilkan dari harta warisannya untuk fidyah.\"", "\"...walinya (ahli warisnya) berpuasa untuknya.\"", "\"...hutang puasanya otomatis gugur karena kematian.\"", "\"...ia akan ditahan di alam kubur hingga ada yang menyedekahkan pahala untuknya.\""], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "KESAKSIAN HILAL: Menurut Sunnah Nabi ﷺ, jika langit cerah, berapa jumlah minimal saksi yang adil (tsiqah) untuk menetapkan masuknya bulan Ramadhan, dan berapa minimal saksi untuk menetapkan Idul Fitri (masuknya bulan Syawwal)?", 
+                jawaban: "1 orang saksi untuk awal Ramadhan, dan 2 orang saksi untuk Idul Fitri (Syawwal)", 
+                pilihan: ["Keduanya cukup 1 orang saksi", "Keduanya minimal harus 2 orang saksi", "1 orang saksi untuk awal Ramadhan, dan 2 orang saksi untuk Idul Fitri (Syawwal)", "2 orang saksi untuk awal Ramadhan, dan 1 orang saksi untuk Idul Fitri (Syawwal)"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "TANDA LAILATUL QADR: Sahabat Ubay bin Ka'ab radhiyallahu 'anhu berani bersumpah bahwa ia mengetahui jatuhnya malam Lailatul Qadr berdasarkan tanda pagi harinya yang dikabarkan oleh Nabi ﷺ. Apakah tanda tersebut?", 
+                jawaban: "Matahari terbit dengan cerah, berwarna putih terang namun tidak menyilaukan mata (seperti bejana)", 
+                pilihan: ["Hujan rintik-rintik di pagi hari tanpa disertai awan hitam", "Udara pagi terasa sangat dingin hingga membekukan embun", "Matahari terbit dengan cerah, berwarna putih terang namun tidak menyilaukan mata (seperti bejana)", "Anjing-anjing tidak menggonggong dan keledai tidak meringkik"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            },
+            { 
+                deskripsi: "FIKIH PUASA SUNNAH: Nabi ﷺ melarang umatnya melakukan Wishaal (puasa bersambung hari tanpa buka dan sahur). Namun, jika ada sahabat yang bersikeras ingin melakukan Wishaal, batas maksimal yang diizinkan oleh Nabi ﷺ adalah...", 
+                jawaban: "Menyambung sampai waktu Sahur di malam berikutnya", 
+                pilihan: ["Menyambung sampai waktu Isya", "Menyambung sampai waktu Sahur di malam berikutnya", "Boleh menyambung 2 hari 2 malam berturut-turut", "Menyambung sampai tengah malam (pertengahan malam)"], 
+                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
+            }
         ];
+        // --- END Question Data -—
         // --- END Question Data ---
 
         // --- Global Variables ---
