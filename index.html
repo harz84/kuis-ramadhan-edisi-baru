@@ -147,7 +147,7 @@
     <div id="gameArea">
         <div id="timerContainer" style="display: none;">
             <img id="timerIcon" src="https://img.icons8.com/ios-filled/50/ffffff/hourglass.png" alt="Hourglass">
-            <span id="timer">03:00</span>
+            <span id="timer">04:00</span>
         </div>
         
         <div id="startScreen" class="fade-in-up">
@@ -200,7 +200,7 @@
         // --- Variabel Global ---
         let soalSaatIni; let jawabanBenar = false; let skorBenar = 0; let skorSalah = 0; 
         let soalSudahDitampilkan = new Set(); let nomorSoal = 0; const totalSoal = 15; 
-        let timerInterval = null; let timeLeft = 180; // 3 menit
+        let timerInterval = null; let timeLeft = 240; // 4 menit
         let isGameOverSoundPlayed = false; let namaUser = "";
 
         // --- Audio Sederhana ---
@@ -386,7 +386,7 @@
              if (namaUser.trim() === "") { alert("Mohon isi nama Anda sebelum mulai!"); return; }
 
              skorBenar = 0; skorSalah = 0; nomorSoal = 0; soalSudahDitampilkan.clear(); 
-             isGameOverSoundPlayed = false; timeLeft = 180; 
+             isGameOverSoundPlayed = false; timeLeft = 240; 
              playSound('start');
              mulaiPermainan();
         });
