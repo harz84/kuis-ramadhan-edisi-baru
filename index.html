@@ -3,283 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kuis Ramadhan 2 1447 H</title>
+    <title>Kuis Ngabuburit Ramadhan 1447 H</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gunjala+Gondi&family=Roboto:wght@400;700&family=Signika:wght@400;700&family=Kanit&family=Acme&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://unpkg.com/tone"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    
     <style>
-        html { height: 100%; margin: 0; padding: 0; }
-         body {
-            font-family: 'Roboto', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; height: 100%;
-            background-color: #1A3C34;
-            margin: 0; padding: 0; width: 100%; overflow-x: hidden; position: relative;
+        * { box-sizing: border-box; }
+        
+        html, body { 
+            height: 100%; margin: 0; padding: 0; 
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
+
+        /* --- BACKGROUND ANIMASI GRADIENT MODERN --- */
+        body {
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            background: linear-gradient(-45deg, #0f3e33, #155d4c, #0a2e3f, #1f2b38);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- GLASSMORPHISM GAME AREA --- */
         #gameArea {
-            background-color: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; max-width: 100%; width: 95%; box-sizing: border-box; position: relative;
-        }
-        #timerContainer { display: flex; justify-content: center; align-items: center; margin-bottom: 15px; }
-        #timerIcon { width: 40px; height: 40px; margin-right: 10px; }
-        #timer { font-family: 'Acme', sans-serif; font-size: 40px; color: #2E4A47; }
-
-        #judulGame {
-            font-family: 'Signika', sans-serif; font-size: 40px; color: #D4AF37; margin-bottom: 15px; font-weight: bold; box-sizing: border-box; position: relative;
-        }
-        #judulGame.ramadhan { color: #D4AF37; }
-
-        #petunjuk {
-            font-family: 'Noto Sans Gunjala Gondi', sans-serif; font-size: 24px; margin-bottom: 20px; color: #333; line-height: 1.4;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px; 
+            padding: 40px 20px 30px 20px; 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); 
+            text-align: center; 
+            max-width: 800px; 
+            width: 90%; 
+            position: relative;
         }
 
-        #pilihanGanda { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+        /* --- TIMER --- */
+        #timerContainer { 
+            display: flex; justify-content: center; align-items: center; margin-bottom: 20px; 
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 50px;
+            padding: 5px 20px;
+            display: inline-flex;
+        }
+        #timerIcon { width: 30px; height: 30px; margin-right: 10px; filter: brightness(0) invert(1); }
+        #timer { font-size: 32px; font-weight: 700; color: #fff; letter-spacing: 2px; }
+        
+        .pulse-danger { animation: pulseRed 1s infinite; color: #ff6b6b !important; }
+        @keyframes pulseRed { 0% { transform: scale(1); } 50% { transform: scale(1.1); text-shadow: 0 0 10px red; } 100% { transform: scale(1); } }
+
+        /* --- TYPOGRAPHY --- */
+        #judulGame { 
+            font-size: 36px; color: #F5D061; margin-bottom: 15px; font-weight: 700; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4); 
+            line-height: 1.3;
+        }
+        #petunjuk { font-size: 20px; margin-bottom: 25px; line-height: 1.6; font-weight: 400; color: #eef; }
+
+        /* --- ANIMASI TRANSISI SOAL --- */
+        .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- TOMBOL PILIHAN GANDA (MODERN) --- */
+        #pilihanGanda { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
         #pilihanGanda button {
-            font-family: 'Noto Sans Gunjala Gondi', sans-serif; font-size: 18px; padding: 12px 15px; margin: 8px; border: none; border-radius: 8px; background-color: #F5E8C7; color: #2E4A47; cursor: pointer; transition: background-color 0.3s ease; flex: 1 1 100%; max-width: calc(50% - 16px); min-width: 150px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); box-sizing: border-box; display: flex; align-items: center; text-align: left; line-height: 1.4;
+            font-family: 'Poppins', sans-serif; 
+            font-size: 16px; 
+            padding: 15px 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            border-radius: 12px; 
+            background: rgba(255, 255, 255, 0.85); 
+            color: #1a2a26; 
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-align: left; 
+            line-height: 1.4;
+            font-weight: 600;
         }
-        #pilihanGanda button:hover { background-color: #E8DAB2; }
-        #pilihanGanda button.selected { background-color: #f0ad4e; }
-        #pilihanGanda button.salah { background-color: #FF0000; animation: shake 0.5s; }
+        #pilihanGanda button:hover { 
+            background: #ffffff; 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+        }
+        #pilihanGanda button.salah { background-color: #ff6b6b !important; color: white; animation: shake 0.5s; border: none; }
+        #pilihanGanda button.benar { background-color: #51cf66 !important; color: white; border: none; }
 
         @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } 100% { transform: translateX(0); } }
 
-        #hasil { font-size: 24px; margin-top: 20px; font-weight: bold; color: #333; }
-        .fireworks, .firework { display: none; }
+        /* --- INPUT & TOMBOL MULAI --- */
+        #namaPeserta {
+            padding: 15px; margin-bottom: 25px; font-size: 16px; border-radius: 12px; 
+            border: 2px solid transparent; width: 85%; max-width: 320px; text-align: center;
+            background: rgba(255,255,255,0.9); font-family: 'Poppins', sans-serif;
+            outline: none; transition: 0.3s;
+        }
+        #namaPeserta:focus { border: 2px solid #F5D061; box-shadow: 0 0 15px rgba(245, 208, 97, 0.5); background: #ffffff; }
+        
+        #startButton { 
+            font-size: 20px; padding: 14px 35px; border: none; border-radius: 50px; 
+            background: linear-gradient(135deg, #F5D061, #e6b12c); color: #1a2a26; 
+            cursor: pointer; font-weight: bold; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 208, 97, 0.4); text-transform: uppercase; letter-spacing: 1px;
+        }
+        #startButton:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(245, 208, 97, 0.6); }
 
+        #bismillah { font-size: 16px; color: rgba(255,255,255,0.6); margin-top: 20px; font-style: italic; letter-spacing: 2px;}
+        
+        #hasil { font-size: 24px; margin-top: 15px; font-weight: bold; min-height: 36px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+        
+        #skor { position: absolute; bottom: -40px; right: 0; left: 0; font-size: 16px; font-weight: bold; color: rgba(255,255,255,0.8); text-align: center;}
+        #skorBenar { color: #51cf66; }
+        #skorSalah { color: #ff6b6b; }
+
+        #copyright { position: fixed; bottom: 10px; right: 15px; font-size: 12px; color: rgba(255,255,255,0.5); z-index: 1100; }
+
+        #correctAnimation, #wrongAnimation { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px; display: none; z-index: 1050; pointer-events: none; }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            #judulGame { font-size: 30px; }
-            #petunjuk { font-size: 18px; }
-            #pilihanGanda button { font-size: 15px; padding: 10px 12px; min-width: 100%; max-width: 100%; margin: 6px 0; }
-            #hasil { font-size: 20px; }
-            #timer { font-size: 30px; }
-            #timerIcon { width: 30px; height: 30px; }
+            #judulGame { font-size: 28px; }
+            #petunjuk { font-size: 16px; }
+            #pilihanGanda button { font-size: 14px; padding: 12px 15px; }
+            #gameArea { padding: 30px 15px 20px 15px; }
         }
-
-        @media (max-width: 600px) {
-            #judulGame { font-size: 24px; }
-             #petunjuk { font-size: 16px; }
-            #pilihanGanda button { font-size: 14px; }
-            #timer { font-size: 25px; }
-            #timerIcon { width: 25px; height: 25px; }
-        }
-        #skor { position: absolute; bottom: 10px; right: 10px; font-size: 18px; font-weight: bold; color: #333; }
-        #skorBenar { color: #00FF00; }
-        #skorSalah { color: #FF0000; }
-
-        #startButton { font-size: 24px; padding: 12px 20px; margin: 8px; border: none; border-radius: 8px; background-color: #F5E8C7; color: #2E4A47; cursor: pointer; transition: background-color 0.3s ease; }
-        #startButton:hover { background-color: #E8DAB2; }
-
-        #learnMoreButton { font-size: 18px; padding: 8px 14px; margin: 8px; border: none; border-radius: 8px; background-color: #F5E8C7; color: #2E4A47; cursor: pointer; transition: background-color 0.3s ease; }
-        #learnMoreButton:hover { background-color: #E8DAB2; }
-
-        #bismillah { font-size: 20px; color: #333; margin-top: 10px; }
-        #skorAkhir { font-size: 28px; font-weight: bold; }
-
-        @keyframes popup { 0% { transform: scale(0); opacity: 0; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
-        .popup-animation { animation: popup 0.5s ease-in-out forwards; }
-
-        #copyright {
-            position: absolute; top: 10px; right: 10px; font-family: 'Kanit', sans-serif; font-size: 14px;
-            color: #F5E8C7;
-            z-index: 1100;
-        }
-
-        #correctAnimation, #wrongAnimation { position: absolute; top: 10px; width: 64px; height: 64px; display: none; z-index: 1050; }
-        #correctAnimation { right: 10px; }
-        #wrongAnimation { right: 80px; }
-
-        @media (max-width: 768px) { #wrongAnimation { right: 10px; } #correctAnimation { right: 10px; } }
-
     </style>
 </head>
 <body>
     <div id="gameArea">
         <div id="timerContainer" style="display: none;">
-            <img id="timerIcon" src="https://img.icons8.com/ios-filled/50/2E4A47/hourglass.png" alt="Hourglass">
-            <span id="timer">03:00</span> <!-- HTML Display Updated -->
+            <img id="timerIcon" src="https://img.icons8.com/ios-filled/50/ffffff/hourglass.png" alt="Hourglass">
+            <span id="timer">03:00</span>
         </div>
-        <h1 id="judulGame">Kuis Ramadhan 1447 H</h1>
-        <p id="petunjuk">Selamat datang di Kuis Ramadhan!</p>
-        <div id="startScreen">
-            <input type="text" id="namaPeserta" placeholder="Masukkan Nama Anda" style="padding: 10px; margin-bottom: 15px; font-size: 16px; border-radius: 8px; border: none; width: 80%; max-width: 300px; text-align: center;"><br>
+        
+        <div id="startScreen" class="fade-in-up">
+            <h1 id="judulGame">Kuis Ngabuburit<br>Ramadhan 1447 H</h1>
+            <p id="petunjuk" style="font-size: 18px;">Uji pengetahuan Islam kamu sambil menunggu waktu berbuka puasa!</p>
             
-            <button id="startButton">Start</button>
-            <p id="bismillah">Bismillah</p>
+            <input type="text" id="namaPeserta" placeholder="Ketik Nama Anda Di Sini"><br>
+            <button id="startButton">Mulai Kuis</button>
+            <p id="bismillah">﷽</p>
         </div>
-        <div id="pilihanGanda" style="display: none;">
-            <!-- Buttons generated by JS -->
-        </div>
+
+        <h1 id="judulGameAktif" class="fade-in-up" style="display: none; font-size: 24px; color: #F5D061; margin-bottom: 20px;"></h1>
+        <p id="petunjukSoal" class="fade-in-up" style="display: none;"></p>
+        
+        <div id="pilihanGanda" class="fade-in-up" style="display: none;">
+            </div>
+        
         <p id="hasil"></p>
-        <div class="fireworks"></div>
+        
         <div id="correctAnimation"></div>
         <div id="wrongAnimation"></div>
+        
         <div id="skor" style="display: none;">
-            Benar: <span id="skorBenar">0</span> / Salah: <span id="skorSalah">0</span>
+            ✅ Benar: <span id="skorBenar">0</span> &nbsp;|&nbsp; ❌ Salah: <span id="skorSalah">0</span>
         </div>
     </div>
-    <div id="copyright">© Mas Har</div>
+    
+    <div id="copyright">© Mas Har 2024</div>
+
     <script>
-        // --- Question Data ---
-        // --- Question Data ---
+        // --- SOAL TERBARU ---
         const dataTebakan = [
-            { 
-                deskripsi: "FIKIH NIAT: Hadits Hafshah mewajibkan niat sebelum terbit fajar (Tabyitun Niyyah). Jika seseorang tertidur dari sesudah Asar hingga azan Subuh keesokan harinya, dan ia belum terbesit niat untuk puasa Ramadhan hari itu, apa hukum puasanya pada hari tersebut menurut pendapat mayoritas ulama (Jumhur)?", 
-                jawaban: "Puasanya tidak sah, ia wajib menahan diri dari makan minum seharian itu, dan wajib mengqadhanya di hari lain.", 
-                pilihan: ["Puasanya sah karena niat di awal bulan Ramadhan sudah mencukupi untuk sebulan penuh.", "Puasanya tidak sah, ia wajib menahan diri dari makan minum seharian itu, dan wajib mengqadhanya di hari lain.", "Puasanya sah asalkan ia langsung berniat seketika ia bangun setelah azan Subuh.", "Puasanya tidak sah dan ia wajib membayar fidyah tanpa perlu mengqadha."], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "KERINGANAN (RUKHSHAH): Menurut fatwa yang shahih dari Ibnu Abbas dan Ibnu Umar radhiyallahu 'anhum, apakah kewajiban bagi wanita hamil dan menyusui yang tidak berpuasa Ramadhan karena khawatir atas kesehatan fisiknya atau bayinya?", 
-                jawaban: "Hanya wajib membayar fidyah (memberi makan orang miskin) tanpa qadha.", 
-                pilihan: ["Wajib qadha (mengganti puasa) saja.", "Wajib qadha dan membayar fidyah sekaligus.", "Hanya wajib membayar fidyah (memberi makan orang miskin) tanpa qadha.", "Tidak wajib qadha dan tidak wajib fidyah."], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "PEMBATAL PUASA: Dari berbagai tindakan medis berikut ini, manakah yang MEMBATALKAN puasa menurut fatwa para ulama (seperti Lajnah Daimah dan Syaikh Ibnu Utsaimin)?", 
-                jawaban: "Suntikan nutrisi/infus pengganti makanan (Mughaddziyah)", 
-                pilihan: ["Menggunakan obat tetes mata atau telinga", "Menggunakan inhaler untuk penderita asma", "Suntikan nutrisi/infus pengganti makanan (Mughaddziyah)", "Suntikan vaksin atau anestesi (bius) lokal"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "FIKIH WAKTU IFTAR: Di masa hidup Nabi ﷺ (riwayat Asma' binti Abu Bakar), para sahabat pernah berbuka puasa karena langit sangat mendung, mereka mengira matahari sudah tenggelam. Namun tak lama kemudian matahari terlihat kembali. Apa yang diperintahkan kepada mereka?", 
-                jawaban: "Menahan diri hingga Maghrib dan wajib mengqadha puasa hari tersebut", 
-                pilihan: ["Melanjutkan makan karena mereka tidak sengaja", "Memuntahkan kembali makanan tersebut dan puasa batal", "Menahan diri hingga Maghrib dan wajib mengqadha puasa hari tersebut", "Puasanya sah dan dilanjutkan hingga Maghrib tanpa perlu qadha"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "ASBABUL WURUD: Rasulullah ﷺ pernah bersabda: \"Bukanlah termasuk kebaikan berpuasa saat dalam safar (perjalanan).\" Dalam kondisi (sebab) apakah Nabi ﷺ mengucapkan hadits tersebut?", 
-                jawaban: "Saat melihat ada kerumunan orang memayungi seorang musafir yang pingsan/kepayahan karena puasa", 
-                pilihan: ["Saat melihat ada sahabat yang muntah-muntah di atas untanya", "Saat melihat ada kerumunan orang memayungi seorang musafir yang pingsan/kepayahan karena puasa", "Saat pasukan muslimin sedang bersiap untuk Perang Badar", "Saat para sahabat kehabisan bekal air di tengah padang pasir"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "SEJARAH RAMADHAN: Peristiwa agung Fathu Makkah (Pembebasan kota Makkah) terjadi pada bulan Ramadhan tahun 8 Hijriyah. Tepatnya pada tanggal berapakah peristiwa bersejarah tersebut terjadi?", 
-                jawaban: "20 Ramadhan", 
-                pilihan: ["17 Ramadhan", "10 Ramadhan", "20 Ramadhan", "27 Ramadhan"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "FIKIH TARAWIH: Pada masa kekhalifahan siapakah kaum muslimin pertama kali dikumpulkan kembali secara berjamaah di bawah satu imam untuk shalat Tarawih selama sebulan penuh, setelah di zaman Nabi ﷺ sempat dihentikan agar tidak dianggap wajib?", 
-                jawaban: "Umar bin Al-Khattab radhiyallahu 'anhu", 
-                pilihan: ["Abu Bakar Ash-Shiddiq radhiyallahu 'anhu", "Umar bin Al-Khattab radhiyallahu 'anhu", "Utsman bin Affan radhiyallahu 'anhu", "Ali bin Abi Thalib radhiyallahu 'anhu"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "KAFFARAH (DENDA): Seorang sahabat melapor kepada Nabi ﷺ bahwa ia sengaja berjima' (berhubungan suami istri) di siang hari Ramadhan. Nabi menetapkan Kaffarah yang berurutan. Jika ia tidak mampu memerdekakan budak, apa urutan denda selanjutnya?", 
-                jawaban: "Berpuasa 2 bulan berturut-turut", 
-                pilihan: ["Memberi makan 60 orang miskin", "Berpuasa 60 hari namun boleh tidak berturut-turut", "Berpuasa 2 bulan berturut-turut", "Membayar denda uang seharga 100 ekor unta"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "FIKIH BEKAM: Terdapat hadits \"Telah berbuka (batal) orang yang membekam dan yang dibekam\". Namun, mayoritas ulama (Jumhur) menetapkan berbekam tidak membatalkan puasa. Dalil shahih apakah dari Ibnu Abbas yang menghapus (nasakh) larangan tersebut?", 
-                jawaban: "Nabi ﷺ berbekam saat beliau sedang ihram dan sedang berpuasa", 
-                pilihan: ["Nabi ﷺ memerintahkan sahabat menelan ludah setelah dibekam", "Nabi ﷺ berbekam saat beliau sedang ihram dan sedang berpuasa", "Nabi ﷺ membayar fidyah setelah beliau berbekam", "Ibnu Abbas berkata bekam hanya batal jika darahnya tertelan"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "PRAKTIK FIDYAH: Sahabat Anas bin Malik di akhir hayatnya sudah sangat tua dan tidak mampu berpuasa, sehingga beliau menunaikan fidyah. Bagaimana cara membayar fidyah yang dipraktikkan oleh Anas bin Malik yang menjadi rujukan para ulama?", 
-                jawaban: "Mengumpulkan 30 orang miskin di akhir bulan Ramadhan, lalu menjamu mereka makan besar (daging dan roti) sampai kenyang", 
-                pilihan: ["Memberikan uang tunai kepada pengurus masjid di awal bulan", "Membagikan beras mentah 1 kilogram setiap hari kepada tetangga", "Mengumpulkan 30 orang miskin di akhir bulan Ramadhan, lalu menjamu mereka makan besar (daging dan roti) sampai kenyang", "Menyembelih seekor kambing dan memakannya sendiri bersama keluarga"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "ZAKAT FITRAH: Dalam riwayat Abu Sa'id al-Khudri radhiyallahu 'anhu, beliau menyebutkan beberapa jenis makanan pokok yang lazim dikeluarkan sebagai Zakat Fitrah di zaman Nabi ﷺ. Manakah di bawah ini yang TIDAK disebutkan secara tekstual dalam hadits tersebut?", 
-                jawaban: "Beras merah (Ruz)", 
-                pilihan: ["Gandum kering (Sya'ir)", "Kismis (Zabib)", "Keju kering / Susu kering (Aqith)", "Beras merah (Ruz)"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "HUKUM QADHA: Dari Aisyah radhiyallahu 'anha, Rasulullah ﷺ bersabda: \"Barangsiapa meninggal dunia dan ia masih memiliki hutang puasa (karena udzur lalu belum sempat qadha), maka...\" Apa kelanjutan hadits (solusi) tersebut?", 
-                jawaban: "\"...walinya (ahli warisnya) berpuasa untuknya.\"", 
-                pilihan: ["\"...diambilkan dari harta warisannya untuk fidyah.\"", "\"...walinya (ahli warisnya) berpuasa untuknya.\"", "\"...hutang puasanya otomatis gugur karena kematian.\"", "\"...ia akan ditahan di alam kubur hingga ada yang menyedekahkan pahala untuknya.\""], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "KESAKSIAN HILAL: Menurut Sunnah Nabi ﷺ, jika langit cerah, berapa jumlah minimal saksi yang adil (tsiqah) untuk menetapkan masuknya bulan Ramadhan, dan berapa minimal saksi untuk menetapkan Idul Fitri (masuknya bulan Syawwal)?", 
-                jawaban: "1 orang saksi untuk awal Ramadhan, dan 2 orang saksi untuk Idul Fitri (Syawwal)", 
-                pilihan: ["Keduanya cukup 1 orang saksi", "Keduanya minimal harus 2 orang saksi", "1 orang saksi untuk awal Ramadhan, dan 2 orang saksi untuk Idul Fitri (Syawwal)", "2 orang saksi untuk awal Ramadhan, dan 1 orang saksi untuk Idul Fitri (Syawwal)"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "TANDA LAILATUL QADR: Sahabat Ubay bin Ka'ab radhiyallahu 'anhu berani bersumpah bahwa ia mengetahui jatuhnya malam Lailatul Qadr berdasarkan tanda pagi harinya yang dikabarkan oleh Nabi ﷺ. Apakah tanda tersebut?", 
-                jawaban: "Matahari terbit dengan cerah, berwarna putih terang namun tidak menyilaukan mata (seperti bejana)", 
-                pilihan: ["Hujan rintik-rintik di pagi hari tanpa disertai awan hitam", "Udara pagi terasa sangat dingin hingga membekukan embun", "Matahari terbit dengan cerah, berwarna putih terang namun tidak menyilaukan mata (seperti bejana)", "Anjing-anjing tidak menggonggong dan keledai tidak meringkik"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            },
-            { 
-                deskripsi: "FIKIH PUASA SUNNAH: Nabi ﷺ melarang umatnya melakukan Wishaal (puasa bersambung hari tanpa buka dan sahur). Namun, jika ada sahabat yang bersikeras ingin melakukan Wishaal, batas maksimal yang diizinkan oleh Nabi ﷺ adalah...", 
-                jawaban: "Menyambung sampai waktu Sahur di malam berikutnya", 
-                pilihan: ["Menyambung sampai waktu Isya", "Menyambung sampai waktu Sahur di malam berikutnya", "Boleh menyambung 2 hari 2 malam berturut-turut", "Menyambung sampai tengah malam (pertengahan malam)"], 
-                judul: "Kuis Ramadhan (Edisi Baru)", kategori: "ramadhan" 
-            }
+            { deskripsi: "Terdapat amalan di bulan Ramadhan yang nilai pahalanya disejajarkan dengan ibadah Haji. Amalan apakah yang dimaksud berdasarkan hadits riwayat Bukhari dan Muslim?", jawaban: "Melaksanakan Umrah di bulan Ramadhan", pilihan: ["I'tikaf di sepuluh malam terakhir", "Memberi makan orang yang berbuka puasa (Tafthir as-Shoim)", "Melaksanakan Umrah di bulan Ramadhan", "Shalat Tarawih berjamaah hingga imam selesai"] },
+            { deskripsi: "Seseorang sangat rajin berpuasa Ramadhan dari pagi hingga maghrib, namun ia dengan sengaja meninggalkan shalat wajib 5 waktu. Bagaimana status puasanya?", jawaban: "Puasanya tidak sah (tidak diterima) dan tidak bermanfaat pada hari kiamat", pilihan: ["Puasanya tetap sah, namun ia menanggung dosa besar karena meninggalkan shalat", "Puasanya makruh dan pahalanya berkurang drastis", "Puasanya tidak sah (tidak diterima) dan tidak bermanfaat pada hari kiamat", "Puasanya sah jika ia mengganti (qadha) shalatnya di bulan Syawal"] },
+            { deskripsi: "Sering kita mendengar ungkapan di masyarakat bahwa 'Tidurnya orang yang berpuasa adalah ibadah'. Bagaimana tinjauan ilmu hadits terhadap ungkapan ini?", jawaban: "Hadits Dhaif (lemah)", pilihan: ["Hadits Shahih muttafaqun 'alaih", "Hadits Hasan lighairihi", "Hadits Dhaif (lemah)", "Hadits Mauquf dari sahabat"] },
+            { deskripsi: "Kapan waktu yang bernilai ibadah bagi seseorang yang tidur di siang hari bulan Ramadhan?", jawaban: "Jika ia tidur dengan niat agar tubuhnya kuat untuk melakukan Qiyamul Lail dan ibadah lainnya", pilihan: ["Jika ia tidur dari pagi hingga sore untuk menghindari maksiat mata", "Jika ia tidur karena kelelahan bekerja mencari nafkah", "Jika ia tidur dengan niat agar tubuhnya kuat untuk melakukan Qiyamul Lail dan ibadah lainnya", "Tidur di bulan Ramadhan secara mutlak adalah ibadah, apapun niatnya"] },
+            { deskripsi: "Mengkhususkan ziarah kubur menjelang Ramadhan dan merangkainya dengan doa-doa khusus selama bulan Ramadhan adalah perbuatan yang...", jawaban: "Tidak ada dasar dan tuntunannya dari ajaran Islam", pilihan: ["Dianjurkan (Sunnah) sebagai bentuk pengingat kematian", "Tidak ada dasar dan tuntunannya dari ajaran Islam", "Mubah (Boleh) dilakukan asal tidak meminta-minta kepada kuburan", "Sunnah Muakkadah bagi yang orang tuanya sudah wafat"] },
+            { deskripsi: "Menjelang waktu berbuka (sering disebut ngabuburit), banyak orang menyia-nyiakan waktunya untuk hal yang tidak bermanfaat. Padahal, waktu menjelang berbuka memiliki keutamaan, yaitu...", jawaban: "Waktu mustajab untuk berdoa", pilihan: ["Waktu yang paling baik untuk tidur sejenak", "Waktu mustajab untuk berdoa", "Waktu untuk membayar zakat fitrah", "Waktu diturunkannya malaikat Rahmat secara khusus"] },
+            { deskripsi: "Saat berdzikir, sangat dianjurkan (disunnahkan) untuk menghitung tasbih menggunakan jari-jemari tangan kanan. Apa hikmah syar'iyah dari anjuran ini berdasarkan sabda Nabi ﷺ?", jawaban: "Karena jari-jemari akan ditanyai dan diminta untuk berbicara pada hari kiamat", pilihan: ["Karena jari-jemari akan ditanyai dan diminta untuk berbicara pada hari kiamat", "Karena menghitung dengan jari lebih melatih konsentrasi otak", "Karena penggunaan biji tasbih adalah haram mutlak tanpa pengecualian", "Karena tangan kanan adalah tangan yang digunakan untuk makan"] },
+            { deskripsi: "Jika seseorang merutinkan membaca Ayat Kursi setiap selesai shalat fardhu, keutamaan agung apa yang dijanjikan baginya?", jawaban: "Tidak ada yang menghalanginya masuk Surga kecuali kematian", pilihan: ["Rezekinya akan dilancarkan seperti air mengalir", "Diselamatkan dari azab kubur", "Tidak ada yang menghalanginya masuk Surga kecuali kematian", "Diangkat derajatnya sebanyak 70 derajat"] },
+            { deskripsi: "Shalat Witir adalah penutup shalat malam. Berapakah jumlah rakaat Shalat Witir yang sesuai dengan Sunnah?", jawaban: "Ganjil (1, 3, 5, 7, 9, atau 11 rakaat)", pilihan: ["Hanya boleh 3 rakaat", "Ganjil (1, 3, 5, 7, 9, atau 11 rakaat)", "Genap ditambah satu rakaat di akhir", "Minimal 3 rakaat maksimal 13 rakaat"] },
+            { deskripsi: "Rasulullah ﷺ mengabarkan bahwa setiap manusia memiliki 360 persendian yang harus disedekahi setiap harinya. Amalan apa yang dapat mencukupi sedekah untuk 360 persendian tersebut?", jawaban: "Melaksanakan Shalat Dhuha 2 rakaat", pilihan: ["Berinfaq di pagi hari", "Melaksanakan Shalat Dhuha 2 rakaat", "Membaca dzikir pagi dan petang", "Berjalan menuju masjid untuk shalat berjamaah"] },
+            { deskripsi: "Bagaimana lafaz doa berbuka puasa yang sesuai dengan ajaran Nabi ﷺ yang dibaca setelah kita meminum/memakan hidangan berbuka?", jawaban: "Dzahabazh zhoma-u wabtallatil 'uruuqu wa tsabatal ajru insya Allah", pilihan: ["Allahumma laka shumtu wa bika aamantu...", "Dzahabazh zhoma-u wabtallatil 'uruuqu wa tsabatal ajru insya Allah", "Allahumma baarik lanaa fii maa razaqtanaa...", "Alhamdulillahilladzi ath'amanii haadzaa..."] },
+            { deskripsi: "Laa ilaaha illaa anta subhaanaka innii kuntu minazh zhoolimiin. Ini adalah doa yang dipanjatkan oleh salah seorang Nabi saat beliau berada dalam kesulitan. Siapakah Nabi tersebut?", jawaban: "Nabi Yunus 'alaihissalam", pilihan: ["Nabi Adam 'alaihissalam", "Nabi Nuh 'alaihissalam", "Nabi Ibrahim 'alaihissalam", "Nabi Yunus 'alaihissalam"] },
+            { deskripsi: "Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu'anni. Kapan doa ini paling ditekankan untuk dibaca?", jawaban: "Di malam Lailatul Qadar", pilihan: ["Saat sujud terakhir dalam shalat fardhu", "Saat mendengar petir", "Di malam Lailatul Qadar", "Saat berziarah kubur"] },
+            { deskripsi: "Ketika Muadzin mengumandangkan lafaz Hayya 'Alash Shalah dan Hayya 'Alal Falah, apa kalimat yang disunnahkan untuk kita ucapkan sebagai jawabannya?", jawaban: "Laa hawla wa laa quwwata illa billah", pilihan: ["Hayya 'Alash Shalah dan Hayya 'Alal Falah", "Laa hawla wa laa quwwata illa billah", "Allahu Akbar, Allahu Akbar", "Subhanallah walhamdulillah"] },
+            { deskripsi: "Apakah hukum puasa Ramadhan bagi seorang musafir (orang yang bepergian jauh)?", jawaban: "Boleh memilih antara tetap berpuasa atau berbuka lalu mengqadhanya di luar Ramadhan", pilihan: ["Wajib tetap berpuasa apa pun kondisinya", "Haram berpuasa karena sedang dalam perjalanan", "Boleh memilih antara tetap berpuasa atau berbuka lalu mengqadhanya di luar Ramadhan", "Boleh berbuka dan tidak perlu mengqadhanya sama sekali"] }
         ];
-        // --- END Question Data -—
-        // --- END Question Data ---
 
-        // --- Global Variables ---
-        let soalSaatIni; let synth = new Tone.Synth().toDestination(); let jawabanBenar = false; let skorBenar = 0; let skorSalah = 0; let soalSudahDitampilkan = new Set(); let nomorSoal = 0; const totalSoal = 15; let isStartSoundPlayed = false; let timerInterval = null;
-        let timeLeft = 180; // UPDATED: 3 minutes (180 seconds)
-        let isGameOverSoundPlayed = false;
-        let namaUser = "";
+        // --- Variabel Global ---
+        let soalSaatIni; let jawabanBenar = false; let skorBenar = 0; let skorSalah = 0; 
+        let soalSudahDitampilkan = new Set(); let nomorSoal = 0; const totalSoal = 15; 
+        let timerInterval = null; let timeLeft = 180; // 3 menit
+        let isGameOverSoundPlayed = false; let namaUser = "";
 
-        // --- Functions ---
-        function playSound(type, specificAudioFile) { let audioFile; if (type === 'success') audioFile = 'success.wav'; else if (type === 'fail') audioFile = 'gameovertwew.wav'; else if (type === 'start' && !isStartSoundPlayed) { audioFile = 'ping.wav'; isStartSoundPlayed = true; } else if (type === 'gameover' && specificAudioFile) audioFile = specificAudioFile; else if (type) audioFile = type; if (audioFile) { const audio = new Audio(audioFile); audio.play().catch(e => console.error("Error playing sound:", e)); } }
-        function updateTimer() { let minutes = Math.floor(timeLeft / 60); let seconds = timeLeft % 60; document.getElementById("timer").textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`; if (timeLeft <= 0) { clearInterval(timerInterval); timerInterval = null; if (nomorSoal < totalSoal) { skorSalah += (totalSoal - nomorSoal); document.getElementById("skorSalah").textContent = skorSalah; } akhirPermainan(); } else { timeLeft--; } }
-        function resetPilihan() { const pilihanButtons = document.querySelectorAll("#pilihanGanda button"); pilihanButtons.forEach(button => { button.classList.remove("selected", "salah"); button.style.backgroundColor = ""; button.style.animationPlayState = 'paused'; }); }
-        function playCorrectAnimation() { const ac = document.getElementById('correctAnimation'); ac.style.display = 'block'; ac.innerHTML = ''; try { lottie.loadAnimation({ container: ac, renderer: 'svg', loop: false, autoplay: true, path: 'correctan.json' }); } catch (e) { console.error("Lottie Error(C):", e); ac.style.display = 'none'; } setTimeout(() => { ac.style.display = 'none'; }, 2000); }
-        function playWrongAnimation() { const aw = document.getElementById('wrongAnimation'); aw.style.display = 'block'; aw.innerHTML = ''; try { lottie.loadAnimation({ container: aw, renderer: 'svg', loop: false, autoplay: true, path: 'wrong.json' }); } catch (e) { console.error("Lottie Error(W):", e); aw.style.display = 'none'; } setTimeout(() => { aw.style.display = 'none'; }, 2000); }
+        // --- Audio Sederhana ---
+        function playSound(type) {
+            let src = '';
+            if(type === 'start') src = 'ping.wav';
+            else if(type === 'success') src = 'success.wav';
+            else if(type === 'fail') src = 'gameovertwew.wav';
+            else src = type; 
+            
+            if(src) {
+                let audio = new Audio(src);
+                audio.play().catch(e => console.log("Audio play prevented:", e));
+            }
+        }
+
+        function updateTimer() { 
+            let minutes = Math.floor(timeLeft / 60); 
+            let seconds = timeLeft % 60; 
+            const timerEl = document.getElementById("timer");
+            timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`; 
+            
+            if(timeLeft <= 30) timerEl.classList.add("pulse-danger");
+            else timerEl.classList.remove("pulse-danger");
+
+            if (timeLeft <= 0) { 
+                clearInterval(timerInterval); timerInterval = null; 
+                if (nomorSoal < totalSoal) { skorSalah += (totalSoal - nomorSoal); } 
+                akhirPermainan(); 
+            } else { 
+                timeLeft--; 
+            } 
+        }
+
+        function triggerAnimation(elementId) {
+            const el = document.getElementById(elementId);
+            el.classList.remove("fade-in-up");
+            void el.offsetWidth; // trigger reflow
+            el.classList.add("fade-in-up");
+        }
+
+        function playLottieAnimation(type) { 
+            const container = document.getElementById(type === 'correct' ? 'correctAnimation' : 'wrongAnimation');
+            container.style.display = 'block'; container.innerHTML = ''; 
+            try { 
+                lottie.loadAnimation({ container: container, renderer: 'svg', loop: false, autoplay: true, path: type === 'correct' ? 'correctan.json' : 'wrong.json' }); 
+            } catch (e) {} 
+            setTimeout(() => { container.style.display = 'none'; }, 2000); 
+        }
 
         function mulaiPermainan() {
             document.getElementById("startScreen").style.display = "none";
-            document.getElementById("timerContainer").style.display = "flex";
-            document.getElementById("pilihanGanda").style.display = "flex";
+            document.getElementById("timerContainer").style.display = "inline-flex";
+            
+            const judulGameAktif = document.getElementById("judulGameAktif");
+            const petunjukSoal = document.getElementById("petunjukSoal");
+            const pilihanGanda = document.getElementById("pilihanGanda");
+            
+            judulGameAktif.style.display = "block";
+            petunjukSoal.style.display = "block";
+            pilihanGanda.style.display = "flex";
             document.getElementById("skor").style.display = "block";
 
-            playSound('start');
-
             if (!timerInterval && timeLeft > 0) { updateTimer(); timerInterval = setInterval(updateTimer, 1000); }
-            else if (!timerInterval && timeLeft <= 0) { akhirPermainan(); return; }
 
             jawabanBenar = false;
             let soalTersedia = dataTebakan.filter(soal => !soalSudahDitampilkan.has(soal.deskripsi));
 
-            if (soalTersedia.length === 0 || nomorSoal >= totalSoal) { if(timerInterval) clearInterval(timerInterval); timerInterval = null; akhirPermainan(); return; }
+            if (soalTersedia.length === 0 || nomorSoal >= totalSoal) { 
+                akhirPermainan(); return; 
+            }
 
             nomorSoal++;
             soalSaatIni = soalTersedia[Math.floor(Math.random() * soalTersedia.length)];
             soalSudahDitampilkan.add(soalSaatIni.deskripsi);
 
-            document.getElementById("judulGame").textContent = `Kuis Ramadhan 2 (${nomorSoal}/${totalSoal})`;
-            document.getElementById("petunjuk").textContent = soalSaatIni.deskripsi;
+            judulGameAktif.textContent = `Soal ${nomorSoal} dari ${totalSoal}`;
+            petunjukSoal.textContent = soalSaatIni.deskripsi;
+            
+            triggerAnimation("judulGameAktif");
+            triggerAnimation("petunjukSoal");
+            triggerAnimation("pilihanGanda");
 
-            const pilihanContainer = document.getElementById("pilihanGanda");
-            pilihanContainer.innerHTML = '';
+            pilihanGanda.innerHTML = '';
             const shuffledPilihan = [...soalSaatIni.pilihan].sort(() => Math.random() - 0.5);
 
             shuffledPilihan.forEach(pilihanText => {
-                const button = document.createElement("button"); button.textContent = pilihanText;
-                button.onclick = function() { if (!jawabanBenar && timeLeft > 0 && timerInterval) { cekJawaban(pilihanText, button); } };
-                pilihanContainer.appendChild(button);
+                const button = document.createElement("button"); 
+                button.textContent = pilihanText;
+                button.onclick = function() { 
+                    if (!jawabanBenar && timeLeft > 0) cekJawaban(pilihanText, button); 
+                };
+                pilihanGanda.appendChild(button);
             });
 
-            document.getElementById("hasil").textContent = ""; resetPilihan();
-            document.getElementById("skorBenar").textContent = skorBenar; document.getElementById("skorSalah").textContent = skorSalah;
+            document.getElementById("hasil").textContent = ""; 
+            document.getElementById("skorBenar").textContent = skorBenar; 
+            document.getElementById("skorSalah").textContent = skorSalah;
         }
 
         function cekJawaban(jawabanYangDipilih, buttonElement) {
-            const pilihanButtons = document.querySelectorAll("#pilihanGanda button"); pilihanButtons.forEach(btn => btn.onclick = null);
-            const normDipilih = jawabanYangDipilih.replace(/["“”]/g, '"'); const normBenar = soalSaatIni.jawaban.replace(/["“”]/g, '"');
-
-            if (normDipilih === normBenar) {
-                document.getElementById("hasil").textContent = "Benar!"; playCorrectAnimation(); playSound('success'); jawabanBenar = true; skorBenar++;
-                document.getElementById("skorBenar").textContent = skorBenar; buttonElement.style.backgroundColor = "#90EE90";
-                setTimeout(() => { if (nomorSoal < totalSoal && timeLeft > 0) { mulaiPermainan(); } else { if(timerInterval) clearInterval(timerInterval); timerInterval = null; akhirPermainan(); } }, 1500);
+            const pilihanButtons = document.querySelectorAll("#pilihanGanda button"); 
+            pilihanButtons.forEach(btn => btn.style.pointerEvents = 'none'); 
+            
+            if (jawabanYangDipilih === soalSaatIni.jawaban) {
+                document.getElementById("hasil").textContent = "✨ Jawaban Benar!"; 
+                document.getElementById("hasil").style.color = "#51cf66";
+                playLottieAnimation('correct'); playSound('success'); 
+                jawabanBenar = true; skorBenar++;
+                buttonElement.classList.add("benar");
             } else {
-                document.getElementById("hasil").textContent = "Salah!"; playWrongAnimation(); playSound('fail'); buttonElement.classList.add("salah"); buttonElement.style.animationPlayState = 'running'; skorSalah++;
-                document.getElementById("skorSalah").textContent = skorSalah;
-                 pilihanButtons.forEach(btn => { const normBtn = btn.textContent.replace(/["“”]/g, '"'); if (normBtn === normBenar) { btn.style.backgroundColor = "#90EE90"; } });
-                setTimeout(() => { buttonElement.style.animationPlayState = 'paused'; if (nomorSoal < totalSoal && timeLeft > 0) { mulaiPermainan(); } else { if(timerInterval) clearInterval(timerInterval); timerInterval = null; akhirPermainan(); } }, 2000);
+                document.getElementById("hasil").textContent = "❌ Jawaban Salah!"; 
+                document.getElementById("hasil").style.color = "#ff6b6b";
+                playLottieAnimation('wrong'); playSound('fail'); 
+                skorSalah++;
+                buttonElement.classList.add("salah");
+                
+                pilihanButtons.forEach(btn => { 
+                    if (btn.textContent === soalSaatIni.jawaban) btn.classList.add("benar"); 
+                });
             }
+            
+            document.getElementById("skorBenar").textContent = skorBenar;
+            document.getElementById("skorSalah").textContent = skorSalah;
+
+            setTimeout(() => { 
+                if (nomorSoal < totalSoal && timeLeft > 0) mulaiPermainan(); 
+                else akhirPermainan(); 
+            }, 2000);
         }
 
         function akhirPermainan() {
@@ -289,72 +339,59 @@
             const skorAkhir = totalSoal > 0 ? (skorBenar / totalSoal) * 100 : 0;
             let warnaSkor, komentar, gameOverSoundFile;
 
-            if (skorAkhir < 50) { gameOverSoundFile = 'ast.mp3'; komentar = "Belajar lagi ya....😊😁🤭"; warnaSkor = "#FF0000"; }
-            else if (skorAkhir <= 84) { gameOverSoundFile = 'alh.mp3'; komentar = "Mantap....🫶🏻"; warnaSkor = "#FFA500"; }
-            else { gameOverSoundFile = 'masy.mp3'; komentar = "Kamu Luar Biasa...👍🏻👍🏻👍🏻"; warnaSkor = "#008000"; }
+            if (skorAkhir < 50) { gameOverSoundFile = 'ast.mp3'; komentar = "Belajar lagi ya.... 😊📚"; warnaSkor = "#ff6b6b"; }
+            else if (skorAkhir <= 84) { gameOverSoundFile = 'alh.mp3'; komentar = "Alhamdulillah, Mantap! 👍"; warnaSkor = "#F5D061"; }
+            else { gameOverSoundFile = 'masy.mp3'; komentar = "MasyaAllah, Kamu Luar Biasa! 🌟🏆"; warnaSkor = "#51cf66"; }
 
-            document.getElementById("judulGame").textContent = "Kuis Ramadhan Edisi 1447 H";
-             document.getElementById("petunjuk").innerHTML = `
-                <span id="skorAkhir" style="color: ${warnaSkor};">Skor Akhir Anda: ${skorAkhir.toFixed(0)}%</span><br>
-                Benar: ${skorBenar}<br>Salah: ${skorSalah}<br><br>${komentar}
-            `;
-            document.getElementById("pilihanGanda").innerHTML = ""; document.getElementById("pilihanGanda").style.display = "none";
-            document.getElementById("hasil").textContent = ""; document.getElementById("timerContainer").style.display = "none";
+            document.getElementById("judulGameAktif").textContent = "Kuis Selesai!";
+            document.getElementById("timerContainer").style.display = "none";
             document.getElementById("skor").style.display = "none";
+            document.getElementById("pilihanGanda").style.display = "none";
+            document.getElementById("hasil").style.display = "none";
 
-            playSound('gameover', gameOverSoundFile); isGameOverSoundPlayed = true;
-            // --- KODE MENGIRIM DATA KE GOOGLE SHEETS ---
-            let dataKuis = {
-                waktu: new Date().toLocaleString('id-ID'),
-                nama: namaUser,
-                skor: skorAkhir.toFixed(0),
-                benar: skorBenar,
-                salah: skorSalah
-            };
+            const petunjuk = document.getElementById("petunjukSoal");
+            petunjuk.innerHTML = `
+                <div style="font-size: 24px; margin-bottom: 15px;">Alhamdulillah, Terima kasih <b>${namaUser}</b>!</div>
+                <div style="font-size: 40px; font-weight: bold; color: ${warnaSkor}; text-shadow: 0 0 10px rgba(0,0,0,0.5); margin: 20px 0;">Nilai: ${skorAkhir.toFixed(0)}</div>
+                <div style="font-size: 18px; display: inline-block; text-align: left; background: rgba(0,0,0,0.2); padding: 15px 30px; border-radius: 15px;">
+                    ✅ Benar: <b>${skorBenar}</b><br>
+                    ❌ Salah: <b>${skorSalah}</b>
+                </div>
+                <div style="margin-top: 20px; font-size: 22px; color: #fff;">${komentar}</div>
+            `;
+            triggerAnimation("petunjukSoal");
 
-            // GANTI 'URL_WEB_APP_ANDA' DENGAN URL YANG ANDA SALIN DI LANGKAH 2
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzcZ-6282s8art10zsRbaadJsa-VDQ_HsXtfHIJFmAH-iav481nDn40hFWU_baiJUVREQ/exec'; 
-            
-            fetch(scriptURL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dataKuis)
-            }).then(() => {
-                console.log("Data berhasil disimpan ke server");
-            }).catch(error => console.error('Error!', error.message));
-            // --- AKHIR KODE MENGIRIM DATA ---
-            const learnMoreButton = document.createElement("button");
-            learnMoreButton.textContent = "Belajar Lagi Yuk";
-            learnMoreButton.id = "learnMoreButton";
-            learnMoreButton.onclick = () => { window.location.href = 'https://drive.google.com/file/d/1Hyh8wZ7K5l2t4aTCtxqXlH8vFnL-C2Qb/view?usp=sharing'; };
-            Object.assign(learnMoreButton.style, { fontSize: "18px", padding: "8px 14px", margin: "15px 8px 8px 8px", border: "none", borderRadius: "8px", backgroundColor: "#F5E8C7", color: "#2E4A47", cursor: "pointer", transition: "background-color 0.3s ease" });
-            learnMoreButton.onmouseover = () => learnMoreButton.style.backgroundColor = "#E8DAB2";
-            learnMoreButton.onmouseout = () => learnMoreButton.style.backgroundColor = "#F5E8C7";
-            document.getElementById("gameArea").appendChild(learnMoreButton);
+            playSound(gameOverSoundFile); isGameOverSoundPlayed = true;
+
+            // --- PENGIRIMAN DATA KE GOOGLE SHEETS ---
+            // PASTI KAN MENGGANTI 'URL_WEB_APP_ANDA' DENGAN URL SCRIPT GOOGLE ANDA
+            const scriptURL = 'URL_WEB_APP_ANDA'; 
+            if(scriptURL !== 'URL_WEB_APP_ANDA') {
+                let dataKuis = { waktu: new Date().toLocaleString('id-ID'), nama: namaUser, skor: skorAkhir.toFixed(0), benar: skorBenar, salah: skorSalah };
+                fetch(scriptURL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataKuis) })
+                .then(() => console.log("Data tersimpan di server")).catch(e => console.error('Error!', e));
+            }
+
+            // Tombol Bonus eBook
+            const learnBtn = document.createElement("button");
+            learnBtn.textContent = "📖 Bonus e-Book Ramadhan";
+            learnBtn.onclick = () => window.location.href = 'https://drive.google.com/file/d/1hWKJqHEpmtaPVIaIVBsbU_2iFRCKIZS6/view';
+            Object.assign(learnBtn.style, { fontSize: "18px", padding: "14px 25px", marginTop: "30px", border: "none", borderRadius: "50px", background: "linear-gradient(135deg, #F5D061, #e6b12c)", color: "#1a2a26", cursor: "pointer", fontWeight: "bold", transition: "0.3s", boxShadow: "0 4px 15px rgba(245, 208, 97, 0.4)" });
+            learnBtn.onmouseover = () => learnBtn.style.transform = "scale(1.05)";
+            learnBtn.onmouseout = () => learnBtn.style.transform = "scale(1)";
+            document.getElementById("gameArea").appendChild(learnBtn);
         }
 
-        // Initial Start Button Event Listener
+        // --- EVENT MULAI ---
         document.getElementById("startButton").addEventListener("click", () => {
-             // Wajib isi nama
              namaUser = document.getElementById("namaPeserta").value;
-             if (namaUser.trim() === "") {
-                 alert("Silakan masukkan nama Anda terlebih dahulu sebelum memulai kuis!");
-                 return;
-             }
+             if (namaUser.trim() === "") { alert("Mohon isi nama Anda sebelum mulai!"); return; }
 
-             skorBenar = 0; skorSalah = 0; nomorSoal = 0; soalSudahDitampilkan.clear(); isGameOverSoundPlayed = false; isStartSoundPlayed = false;
-             timeLeft = 180; 
-             if(timerInterval) clearInterval(timerInterval); timerInterval = null;
-             document.getElementById("skorBenar").textContent = "0"; document.getElementById("skorSalah").textContent = "0";
-             const oldLearnButton = document.getElementById("learnMoreButton"); if (oldLearnButton) oldLearnButton.remove();
-             document.getElementById("judulGame").textContent = "Kuis Ramadhan 2 1447 H";
-             document.getElementById("petunjuk").innerHTML = "Selamat datang, " + namaUser + "! Bersiaplah...";
-             document.getElementById("petunjuk").style.color = "#333";
-             document.getElementById("skor").style.display = "none";
+             skorBenar = 0; skorSalah = 0; nomorSoal = 0; soalSudahDitampilkan.clear(); 
+             isGameOverSoundPlayed = false; timeLeft = 180; 
+             playSound('start');
              mulaiPermainan();
         });
-
     </script>
 </body>
 </html>
