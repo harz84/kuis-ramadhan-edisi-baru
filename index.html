@@ -365,8 +365,8 @@
 
             // --- PENGIRIMAN DATA KE GOOGLE SHEETS ---
             // PASTI KAN MENGGANTI 'URL_WEB_APP_ANDA' DENGAN URL SCRIPT GOOGLE ANDA
-            const scriptURL = 'URL_WEB_APP_ANDA'; 
-            if(scriptURL !== 'URL_WEB_APP_ANDA') {
+            const scriptURL = '[https://script.google.com/macros/s/AKfycbzcZ-6282s8art10zsRbaadJsa-VDQ_HsXtfHIJFmAH-iav481nDn40hFWU_baiJUVREQ/exec](https://script.google.com/macros/s/AKfycbzcZ-6282s8art10zsRbaadJsa-VDQ_HsXtfHIJFmAH-iav481nDn40hFWU_baiJUVREQ/exec)'; 
+            if(scriptURL !== '[https://script.google.com/macros/s/AKfycbzcZ-6282s8art10zsRbaadJsa-VDQ_HsXtfHIJFmAH-iav481nDn40hFWU_baiJUVREQ/exec](https://script.google.com/macros/s/AKfycbzcZ-6282s8art10zsRbaadJsa-VDQ_HsXtfHIJFmAH-iav481nDn40hFWU_baiJUVREQ/exec)') {
                 let dataKuis = { waktu: new Date().toLocaleString('id-ID'), nama: namaUser, skor: skorAkhir.toFixed(0), benar: skorBenar, salah: skorSalah };
                 fetch(scriptURL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataKuis) })
                 .then(() => console.log("Data tersimpan di server")).catch(e => console.error('Error!', e));
