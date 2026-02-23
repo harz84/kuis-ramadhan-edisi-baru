@@ -132,7 +132,16 @@
 
         #copyright { position: fixed; bottom: 10px; right: 15px; font-size: 12px; color: rgba(255,255,255,0.5); z-index: 1100; }
 
-        #correctAnimation, #wrongAnimation { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px; display: none; z-index: 1050; pointer-events: none; }
+        #correctAnimation, #wrongAnimation { 
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
+    width: 100px; 
+    height: 100px; 
+    display: none; 
+    z-index: 1050; 
+    pointer-events: none; 
+}
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
@@ -140,6 +149,7 @@
             #petunjuk { font-size: 16px; }
             #pilihanGanda button { font-size: 14px; padding: 12px 15px; }
             #gameArea { padding: 30px 15px 20px 15px; }
+            #correctAnimation, #wrongAnimation { width: 70px; height: 70px; top: 15px; right: 15px; }
         }
     </style>
 </head>
@@ -180,21 +190,81 @@
     <script>
         // --- SOAL TERBARU ---
         const dataTebakan = [
-            { deskripsi: "Terdapat amalan di bulan Ramadhan yang nilai pahalanya disejajarkan dengan ibadah Haji. Amalan apakah yang dimaksud berdasarkan hadits riwayat Bukhari dan Muslim?", jawaban: "Melaksanakan Umrah di bulan Ramadhan", pilihan: ["I'tikaf di sepuluh malam terakhir", "Memberi makan orang yang berbuka puasa (Tafthir as-Shoim)", "Melaksanakan Umrah di bulan Ramadhan", "Shalat Tarawih berjamaah hingga imam selesai"] },
-            { deskripsi: "Seseorang sangat rajin berpuasa Ramadhan dari pagi hingga maghrib, namun ia dengan sengaja meninggalkan shalat wajib 5 waktu. Bagaimana status puasanya?", jawaban: "Puasanya tidak sah (tidak diterima) dan tidak bermanfaat pada hari kiamat", pilihan: ["Puasanya tetap sah, namun ia menanggung dosa besar karena meninggalkan shalat", "Puasanya makruh dan pahalanya berkurang drastis", "Puasanya tidak sah (tidak diterima) dan tidak bermanfaat pada hari kiamat", "Puasanya sah jika ia mengganti (qadha) shalatnya di bulan Syawal"] },
-            { deskripsi: "Sering kita mendengar ungkapan di masyarakat bahwa 'Tidurnya orang yang berpuasa adalah ibadah'. Bagaimana tinjauan ilmu hadits terhadap ungkapan ini?", jawaban: "Hadits Dhaif (lemah)", pilihan: ["Hadits Shahih muttafaqun 'alaih", "Hadits Hasan lighairihi", "Hadits Dhaif (lemah)", "Hadits Mauquf dari sahabat"] },
-            { deskripsi: "Kapan waktu yang bernilai ibadah bagi seseorang yang tidur di siang hari bulan Ramadhan?", jawaban: "Jika ia tidur dengan niat agar tubuhnya kuat untuk melakukan Qiyamul Lail dan ibadah lainnya", pilihan: ["Jika ia tidur dari pagi hingga sore untuk menghindari maksiat mata", "Jika ia tidur karena kelelahan bekerja mencari nafkah", "Jika ia tidur dengan niat agar tubuhnya kuat untuk melakukan Qiyamul Lail dan ibadah lainnya", "Tidur di bulan Ramadhan secara mutlak adalah ibadah, apapun niatnya"] },
-            { deskripsi: "Mengkhususkan ziarah kubur menjelang Ramadhan dan merangkainya dengan doa-doa khusus selama bulan Ramadhan adalah perbuatan yang...", jawaban: "Tidak ada dasar dan tuntunannya dari ajaran Islam", pilihan: ["Dianjurkan (Sunnah) sebagai bentuk pengingat kematian", "Tidak ada dasar dan tuntunannya dari ajaran Islam", "Mubah (Boleh) dilakukan asal tidak meminta-minta kepada kuburan", "Sunnah Muakkadah bagi yang orang tuanya sudah wafat"] },
-            { deskripsi: "Menjelang waktu berbuka (sering disebut ngabuburit), banyak orang menyia-nyiakan waktunya untuk hal yang tidak bermanfaat. Padahal, waktu menjelang berbuka memiliki keutamaan, yaitu...", jawaban: "Waktu mustajab untuk berdoa", pilihan: ["Waktu yang paling baik untuk tidur sejenak", "Waktu mustajab untuk berdoa", "Waktu untuk membayar zakat fitrah", "Waktu diturunkannya malaikat Rahmat secara khusus"] },
-            { deskripsi: "Saat berdzikir, sangat dianjurkan (disunnahkan) untuk menghitung tasbih menggunakan jari-jemari tangan kanan. Apa hikmah syar'iyah dari anjuran ini berdasarkan sabda Nabi ﷺ?", jawaban: "Karena jari-jemari akan ditanyai dan diminta untuk berbicara pada hari kiamat", pilihan: ["Karena jari-jemari akan ditanyai dan diminta untuk berbicara pada hari kiamat", "Karena menghitung dengan jari lebih melatih konsentrasi otak", "Karena penggunaan biji tasbih adalah haram mutlak tanpa pengecualian", "Karena tangan kanan adalah tangan yang digunakan untuk makan"] },
-            { deskripsi: "Jika seseorang merutinkan membaca Ayat Kursi setiap selesai shalat fardhu, keutamaan agung apa yang dijanjikan baginya?", jawaban: "Tidak ada yang menghalanginya masuk Surga kecuali kematian", pilihan: ["Rezekinya akan dilancarkan seperti air mengalir", "Diselamatkan dari azab kubur", "Tidak ada yang menghalanginya masuk Surga kecuali kematian", "Diangkat derajatnya sebanyak 70 derajat"] },
-            { deskripsi: "Shalat Witir adalah penutup shalat malam. Berapakah jumlah rakaat Shalat Witir yang sesuai dengan Sunnah?", jawaban: "Ganjil (1, 3, 5, 7, 9, atau 11 rakaat)", pilihan: ["Hanya boleh 3 rakaat", "Ganjil (1, 3, 5, 7, 9, atau 11 rakaat)", "Genap ditambah satu rakaat di akhir", "Minimal 3 rakaat maksimal 13 rakaat"] },
-            { deskripsi: "Rasulullah ﷺ mengabarkan bahwa setiap manusia memiliki 360 persendian yang harus disedekahi setiap harinya. Amalan apa yang dapat mencukupi sedekah untuk 360 persendian tersebut?", jawaban: "Melaksanakan Shalat Dhuha 2 rakaat", pilihan: ["Berinfaq di pagi hari", "Melaksanakan Shalat Dhuha 2 rakaat", "Membaca dzikir pagi dan petang", "Berjalan menuju masjid untuk shalat berjamaah"] },
-            { deskripsi: "Bagaimana lafaz doa berbuka puasa yang sesuai dengan ajaran Nabi ﷺ yang dibaca setelah kita meminum/memakan hidangan berbuka?", jawaban: "Dzahabazh zhoma-u wabtallatil 'uruuqu wa tsabatal ajru insya Allah", pilihan: ["Allahumma laka shumtu wa bika aamantu...", "Dzahabazh zhoma-u wabtallatil 'uruuqu wa tsabatal ajru insya Allah", "Allahumma baarik lanaa fii maa razaqtanaa...", "Alhamdulillahilladzi ath'amanii haadzaa..."] },
-            { deskripsi: "Laa ilaaha illaa anta subhaanaka innii kuntu minazh zhoolimiin. Ini adalah doa yang dipanjatkan oleh salah seorang Nabi saat beliau berada dalam kesulitan. Siapakah Nabi tersebut?", jawaban: "Nabi Yunus 'alaihissalam", pilihan: ["Nabi Adam 'alaihissalam", "Nabi Nuh 'alaihissalam", "Nabi Ibrahim 'alaihissalam", "Nabi Yunus 'alaihissalam"] },
-            { deskripsi: "Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu'anni. Kapan doa ini paling ditekankan untuk dibaca?", jawaban: "Di malam Lailatul Qadar", pilihan: ["Saat sujud terakhir dalam shalat fardhu", "Saat mendengar petir", "Di malam Lailatul Qadar", "Saat berziarah kubur"] },
-            { deskripsi: "Ketika Muadzin mengumandangkan lafaz Hayya 'Alash Shalah dan Hayya 'Alal Falah, apa kalimat yang disunnahkan untuk kita ucapkan sebagai jawabannya?", jawaban: "Laa hawla wa laa quwwata illa billah", pilihan: ["Hayya 'Alash Shalah dan Hayya 'Alal Falah", "Laa hawla wa laa quwwata illa billah", "Allahu Akbar, Allahu Akbar", "Subhanallah walhamdulillah"] },
-            { deskripsi: "Apakah hukum puasa Ramadhan bagi seorang musafir (orang yang bepergian jauh)?", jawaban: "Boleh memilih antara tetap berpuasa atau berbuka lalu mengqadhanya di luar Ramadhan", pilihan: ["Wajib tetap berpuasa apa pun kondisinya", "Haram berpuasa karena sedang dalam perjalanan", "Boleh memilih antara tetap berpuasa atau berbuka lalu mengqadhanya di luar Ramadhan", "Boleh berbuka dan tidak perlu mengqadhanya sama sekali"] }
+            { 
+                deskripsi: "Kapan batas waktu terakhir berniat untuk puasa wajib (seperti puasa Ramadhan) agar puasanya sah berdasarkan hadits Hafshah radhiyallahu 'anha?", 
+                jawaban: "Terbitnya fajar shadiq", 
+                pilihan: ["Terbenamnya matahari (awal malam)", "Sepertiga malam terakhir", "Terbitnya fajar shadiq", "Terbitnya matahari (syuruq)"] 
+            },
+            { 
+                deskripsi: "Berapa jumlah saksi minimal yang dipersyaratkan untuk menetapkan masuknya awal bulan Ramadhan (ru'yatul hilal) berdasarkan Sunnah Nabi shallallahu 'alaihi wa sallam?", 
+                jawaban: "Satu orang laki-laki muslim yang adil", 
+                pilihan: ["Satu orang laki-laki muslim yang adil", "Dua orang laki-laki muslim yang adil", "Satu orang laki-laki dan dua orang perempuan", "Keputusan ahli hisab semata"] 
+            },
+            { 
+                deskripsi: "Bagaimana hukum melakukan bekam (hijamah) bagi orang yang berpuasa menurut pendapat yang dikuatkan oleh Imam Ahmad, Syaikhul Islam Ibnu Taimiyah, dan ulama kibar kontemporer berdasarkan hadits \"Aftaharal haajimu wal mahjuum\"?", 
+                jawaban: "Membatalkan puasa bagi yang membekam dan yang dibekam", 
+                pilihan: ["Makruh namun puasa tetap sah", "Mubah (diperbolehkan) secara mutlak", "Haram tetapi tidak membatalkan puasa", "Membatalkan puasa bagi yang membekam dan yang dibekam"] 
+            },
+            { 
+                deskripsi: "Bagi seorang musafir (orang yang dalam perjalanan) di bulan Ramadhan, dan ia merasa fisiknya mampu serta tidak memberatkan jika berpuasa maupun berbuka, manakah yang lebih afdhal baginya menurut kesepakatan mayoritas ulama dan pandangan Syaikh Ibnu Utsaimin?", 
+                jawaban: "Berpuasa karena lebih cepat menggugurkan kewajiban dan bertepatan dengan bulan yang mulia", 
+                pilihan: ["Berbuka karena mengambil rukhshah (keringanan) adalah wajib", "Berpuasa karena lebih cepat menggugurkan kewajiban dan bertepatan dengan bulan yang mulia", "Berbuka jika perjalanannya lebih dari jarak qashar shalat", "Boleh diundi karena keduanya sama-sama sunnah"] 
+            },
+            { 
+                deskripsi: "Di antara tanda-tanda pagi hari setelah malam Lailatul Qadar yang disebutkan secara shahih dalam hadits riwayat Imam Muslim dari sahabat Ubay bin Ka'ab radhiyallahu 'anhu adalah...", 
+                jawaban: "Matahari terbit berwarna putih bersih tanpa sinar yang menyilaukan", 
+                pilihan: ["Turun hujan rintik-rintik yang sejuk di pagi hari", "Udara terasa sangat dingin dan berkabut tebal", "Matahari terbit berwarna putih bersih tanpa sinar yang menyilaukan", "Matahari terbit dengan warna merah pekat seperti darah"] 
+            },
+            { 
+                deskripsi: "Menurut fatwa dari sahabat yang mulia, Ibnu Abbas dan Ibnu Umar radhiyallahu 'anhuma, apa kewajiban bagi wanita hamil dan menyusui yang berbuka puasa karena khawatir terhadap kondisi fisik janin atau bayinya?", 
+                jawaban: "Hanya wajib membayar fidyah (memberi makan orang miskin) tanpa qadha", 
+                pilihan: ["Hanya wajib mengqadha puasa di hari lain", "Wajib mengqadha puasa sekaligus membayar fidyah", "Hanya wajib membayar fidyah (memberi makan orang miskin) tanpa qadha", "Wajib membayar kaffarah mudhalazah (berpuasa dua bulan berturut-turut)"] 
+            },
+            { 
+                deskripsi: "Kaffarah bagi seseorang yang merusak puasanya di siang hari Ramadhan dengan jima' (berhubungan suami istri) memiliki urutan syar'i. Jika ia tidak mampu memerdekakan budak, maka apa yang wajib ia lakukan pada urutan kedua berdasarkan hadits Abu Hurairah radhiyallahu 'anhu?", 
+                jawaban: "Berpuasa dua bulan berturut-turut", 
+                pilihan: ["Memberi makan 60 orang miskin", "Berpuasa dua bulan berturut-turut", "Membayar fidyah sebesar setengah sha' kurma", "Menyembelih seekor kambing dan dibagikan kepada fakir miskin"] 
+            },
+            { 
+                deskripsi: "Apabila seseorang yang sedang berpuasa tiba-tiba muntah tanpa disengaja (terkalahkan oleh rasa mual/sakit), maka apa status puasanya berdasarkan hadits dari Abu Hurairah radhiyallahu 'anhu?", 
+                jawaban: "Puasanya tetap sah, tidak batal, dan ia melanjutkannya", 
+                pilihan: ["Puasanya batal dan wajib mengqadha", "Puasanya batal dan wajib qadha serta membayar fidyah", "Puasanya makruh dan dianjurkan untuk segera berbuka", "Puasanya tetap sah, tidak batal, dan ia melanjutkannya"] 
+            },
+            { 
+                deskripsi: "Jika seorang makmum ikut shalat Tarawih bersama imam hingga selesai (termasuk shalat Witir bersama imam hingga imam salam), apa keutamaan spesifik yang ia dapatkan berdasarkan hadits riwayat Tirmidzi?", 
+                jawaban: "Dicatat baginya pahala shalat tahajud semalam suntuk", 
+                pilihan: ["Dicatat baginya pahala haji dan umrah yang mabrur", "Diampuni seluruh dosa besarnya di masa lalu", "Dicatat baginya pahala shalat tahajud semalam suntuk", "Dibangunkan untuknya sebuah istana dari mutiara di surga"] 
+            },
+            { 
+                deskripsi: "Dalam mengeluarkan Zakat Fitrah, manhaj para ulama kibar (seperti Syaikh Abdul Aziz bin Baz dan Syaikh Al-Albani rahimahumallah) yang berpegang pada zhahir hadits Ibnu Umar radhiyallahu 'anhuma menyatakan bahwa Zakat Fitrah wajib dikeluarkan dalam bentuk...", 
+                jawaban: "Makanan pokok penduduk setempat (seperti beras, gandum, atau kurma)", 
+                pilihan: ["Uang tunai yang setara dengan harga makanan pokok", "Makanan pokok penduduk setempat (seperti beras, gandum, atau kurma)", "Pakaian baru atau perlengkapan ibadah untuk kaum fakir", "Dirham perak atau Dinar emas"] 
+            },
+            { 
+                deskripsi: "Seseorang makan dan minum di siang hari bulan Ramadhan karena ia benar-benar lupa bahwa ia sedang berpuasa. Setelah ia teringat, apa yang wajib ia lakukan?", 
+                jawaban: "Meneruskan puasanya hingga maghrib, karena Allah yang telah memberinya makan dan minum", 
+                pilihan: ["Memuntahkan kembali makanannya lalu mengqadha puasanya kelak", "Meneruskan puasanya hingga maghrib, karena Allah yang telah memberinya makan dan minum", "Puasanya batal seketika dan ia bebas makan minum di sisa hari itu", "Meneruskan puasanya, namun tetap wajib mengqadha di hari lain sebagai ganti"] 
+            },
+            { 
+                deskripsi: "Bagaimana hukum menggunakan suntikan nutrisi (infus pengganti makanan/minuman) bagi orang yang berpuasa menurut ketetapan Majma' Fiqh Islami dan mayoritas ulama muhaqqiqin?", 
+                jawaban: "Membatalkan puasa karena secara fungsi semakna dengan makan dan minum", 
+                pilihan: ["Tidak membatalkan puasa karena cairan masuk bukan melalui lubang alami (mulut/hidung)", "Membatalkan puasa karena secara fungsi semakna dengan makan dan minum", "Makruh tahrim, namun puasanya sah dan tidak perlu diqadha", "Mubah mutlak selama tidak ada rasa yang dikecap di lidah"] 
+            },
+            { 
+                deskripsi: "Salah satu syarat sahnya i'tikaf di sepuluh hari terakhir Ramadhan adalah menetap di dalam masjid. Kapan seorang mu'takif (orang yang i'tikaf) diperbolehkan keluar dari masjid tanpa membatalkan ibadah i'tikafnya?", 
+                jawaban: "Keluar untuk membuang hajat (ke toilet) atau mengambil makanan jika tidak ada yang membawakannya", 
+                pilihan: ["Keluar untuk membuang hajat (ke toilet) atau mengambil makanan jika tidak ada yang membawakannya", "Keluar untuk bekerja paruh waktu atau berdagang di pasar terdekat", "Keluar untuk sekadar berjalan-jalan menghirup udara segar agar tidak jenuh", "Keluar untuk menjenguk orang sakit meskipun tidak ada kondisi darurat"] 
+            },
+            { 
+                deskripsi: "Apabila seseorang menelan sisa makanan berukuran sangat kecil yang berada di sela-sela giginya karena mengalir bersama ludah tanpa bisa ia hindari (tanpa disengaja), bagaimana hukum puasanya menurut ijma' para ulama?", 
+                jawaban: "Puasanya tetap sah dan tidak batal", 
+                pilihan: ["Puasanya batal dan wajib membayar kaffarah", "Puasanya batal dan wajib mengqadha di luar Ramadhan", "Puasanya tetap sah dan tidak batal", "Puasanya sah namun pahala puasanya berkurang drastis"] 
+            },
+            { 
+                deskripsi: "Rasulullah shallallahu 'alaihi wa sallam sangat menganjurkan umatnya untuk mengakhirkan waktu sahur. Berdasarkan hadits dari Anas bin Malik dari Zaid bin Tsabit radhiyallahu 'anhu, berapakah perkiraan jarak waktu antara selesainya sahurnya Rasulullah dengan azan shalat Subuh?", 
+                jawaban: "Sekitar waktu yang dibutuhkan untuk membaca 50 ayat Al-Qur'an", 
+                pilihan: ["Sekitar waktu yang dibutuhkan untuk membaca 10 ayat Al-Qur'an", "Sekitar waktu yang dibutuhkan untuk membaca 50 ayat Al-Qur'an", "Sekitar waktu yang dibutuhkan untuk membaca 100 ayat Al-Qur'an", "Sekitar waktu yang dibutuhkan untuk membaca 1 juz Al-Qur'an"] 
+            }
         ];
 
         // --- Variabel Global ---
