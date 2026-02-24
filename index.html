@@ -22,14 +22,14 @@
 
         /* --- BACKGROUND & PERBAIKAN LAYAR HP --- */
         body {
-            display: flex; justify-content: center; align-items: flex-start; /* Berubah agar tidak terpotong di atas */
+            display: flex; justify-content: center; align-items: flex-start; 
             min-height: 100vh;
-            padding: 40px 15px; /* Memberi ruang (napas) di atas dan bawah layar */
+            padding: 40px 15px; 
             background: linear-gradient(-45deg, #0f3e33, #155d4c, #0a2e3f, #1f2b38);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             color: #ffffff;
-            overflow-y: auto; /* Memastikan bisa di-scroll jika konten panjang */
+            overflow-y: auto; 
         }
 
         @keyframes gradientBG {
@@ -45,13 +45,13 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px; 
-            padding: 40px 20px 60px 20px; /* Bottom padding diperbesar untuk skor */
+            padding: 40px 20px 60px 20px; 
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); 
             text-align: center; 
             max-width: 800px; 
             width: 100%; 
             position: relative;
-            margin: auto; /* Mengakali agar tetap di tengah jika layar besar */
+            margin: auto; 
         }
 
         /* --- TIMER --- */
@@ -126,24 +126,26 @@
         }
         #startButton:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(245, 208, 97, 0.6); }
 
-        #bismillah { font-size: 16px; color: rgba(255,255,255,0.6); margin-top: 20px; font-style: italic; letter-spacing: 2px;}
+        /* TEKS BISMILLAH DIPERBESAR */
+        #bismillah { font-size: 40px; color: rgba(255,255,255,0.8); margin-top: 15px; font-style: normal; font-weight: normal;}
         
         #hasil { font-size: 22px; margin-top: 15px; font-weight: bold; min-height: 33px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
         
-        /* SKOR DIRAPIKAN AGAR TIDAK TERPOTONG */
         #skor { position: absolute; bottom: 20px; right: 0; left: 0; font-size: 16px; font-weight: bold; color: rgba(255,255,255,0.8); text-align: center;}
         #skorBenar { color: #51cf66; }
         #skorSalah { color: #ff6b6b; }
 
         #copyright { position: fixed; bottom: 10px; right: 15px; font-size: 12px; color: rgba(255,255,255,0.5); z-index: 1100; }
 
-        /* POSISI ANIMASI DI POJOK KANAN ATAS */
+        /* POSISI ANIMASI DI SAMPING KANAN TEKS JUDUL SOAL */
         #correctAnimation, #wrongAnimation { 
             position: absolute; 
-            top: 20px; 
-            right: 20px; 
-            width: 100px; 
-            height: 100px; 
+            left: 100%; /* Berada di sebelah kanan elemen teks */
+            top: 50%; 
+            transform: translateY(-50%); 
+            margin-left: 12px; /* Jarak antara teks dan centang */
+            width: 50px; 
+            height: 50px; 
             display: none; 
             z-index: 1050; 
             pointer-events: none; 
@@ -156,7 +158,7 @@
             #petunjuk { font-size: 15px; }
             #pilihanGanda button { font-size: 14px; padding: 12px 15px; }
             #gameArea { padding: 30px 15px 50px 15px; }
-            #correctAnimation, #wrongAnimation { width: 70px; height: 70px; top: 15px; right: 15px; }
+            #correctAnimation, #wrongAnimation { width: 45px; height: 45px; margin-left: 8px; }
         }
     </style>
 </head>
@@ -164,7 +166,7 @@
     <div id="gameArea">
         <div id="timerContainer" style="display: none;">
             <img id="timerIcon" src="https://img.icons8.com/ios-filled/50/ffffff/hourglass.png" alt="Hourglass">
-            <span id="timer">04:00</span>
+            <span id="timer">05:00</span>
         </div>
         
         <div id="startScreen" class="fade-in-up">
@@ -176,16 +178,20 @@
             <p id="bismillah">﷽</p>
         </div>
 
-        <h1 id="judulGameAktif" class="fade-in-up" style="display: none; font-size: 20px; color: #F5D061; margin-bottom: 15px;"></h1>
+        <div id="judulSoalWrapper" class="fade-in-up" style="display: none; text-align: center; margin-bottom: 15px;">
+            <div style="display: inline-flex; align-items: center; position: relative;">
+                <h1 id="judulGameAktif" style="font-size: 20px; color: #F5D061; margin: 0;"></h1>
+                <div id="correctAnimation"></div>
+                <div id="wrongAnimation"></div>
+            </div>
+        </div>
+
         <p id="petunjukSoal" class="fade-in-up" style="display: none;"></p>
         
         <div id="pilihanGanda" class="fade-in-up" style="display: none;">
             </div>
         
         <p id="hasil"></p>
-        
-        <div id="correctAnimation"></div>
-        <div id="wrongAnimation"></div>
         
         <div id="skor" style="display: none;">
             ✅ Benar: <span id="skorBenar">0</span> &nbsp;|&nbsp; ❌ Salah: <span id="skorSalah">0</span>
@@ -277,7 +283,7 @@
         // --- Variabel Global ---
         let soalSaatIni; let jawabanBenar = false; let skorBenar = 0; let skorSalah = 0; 
         let soalSudahDitampilkan = new Set(); let nomorSoal = 0; const totalSoal = 15; 
-        let timerInterval = null; let timeLeft = 240; // 4 menit
+        let timerInterval = null; let timeLeft = 300; // 5 menit
         let isGameOverSoundPlayed = false; let namaUser = "";
 
         // --- Audio Sederhana ---
@@ -332,11 +338,12 @@
             document.getElementById("startScreen").style.display = "none";
             document.getElementById("timerContainer").style.display = "inline-flex";
             
+            const judulSoalWrapper = document.getElementById("judulSoalWrapper");
             const judulGameAktif = document.getElementById("judulGameAktif");
             const petunjukSoal = document.getElementById("petunjukSoal");
             const pilihanGanda = document.getElementById("pilihanGanda");
             
-            judulGameAktif.style.display = "block";
+            judulSoalWrapper.style.display = "block";
             petunjukSoal.style.display = "block";
             pilihanGanda.style.display = "flex";
             document.getElementById("skor").style.display = "block";
@@ -357,7 +364,7 @@
             judulGameAktif.textContent = `Soal ${nomorSoal} dari ${totalSoal}`;
             petunjukSoal.textContent = soalSaatIni.deskripsi;
             
-            triggerAnimation("judulGameAktif");
+            triggerAnimation("judulSoalWrapper");
             triggerAnimation("petunjukSoal");
             triggerAnimation("pilihanGanda");
 
@@ -436,6 +443,7 @@
                 </div>
                 <div style="margin-top: 20px; font-size: 22px; color: #fff;">${komentar}</div>
             `;
+            triggerAnimation("judulSoalWrapper");
             triggerAnimation("petunjukSoal");
 
             playSound(gameOverSoundFile); isGameOverSoundPlayed = true;
@@ -463,7 +471,7 @@
              if (namaUser.trim() === "") { alert("Mohon isi nama Anda sebelum mulai!"); return; }
 
              skorBenar = 0; skorSalah = 0; nomorSoal = 0; soalSudahDitampilkan.clear(); 
-             isGameOverSoundPlayed = false; timeLeft = 240; 
+             isGameOverSoundPlayed = false; timeLeft = 300; 
              playSound('start');
              mulaiPermainan();
         });
