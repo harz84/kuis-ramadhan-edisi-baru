@@ -20,13 +20,16 @@
             overflow-x: hidden;
         }
 
-        /* --- BACKGROUND ANIMASI GRADIENT MODERN --- */
+        /* --- BACKGROUND & PERBAIKAN LAYAR HP --- */
         body {
-            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            display: flex; justify-content: center; align-items: flex-start; /* Berubah agar tidak terpotong di atas */
+            min-height: 100vh;
+            padding: 40px 15px; /* Memberi ruang (napas) di atas dan bawah layar */
             background: linear-gradient(-45deg, #0f3e33, #155d4c, #0a2e3f, #1f2b38);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             color: #ffffff;
+            overflow-y: auto; /* Memastikan bisa di-scroll jika konten panjang */
         }
 
         @keyframes gradientBG {
@@ -42,12 +45,13 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px; 
-            padding: 40px 20px 30px 20px; 
+            padding: 40px 20px 60px 20px; /* Bottom padding diperbesar untuk skor */
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); 
             text-align: center; 
             max-width: 800px; 
-            width: 90%; 
+            width: 100%; 
             position: relative;
+            margin: auto; /* Mengakali agar tetap di tengah jika layar besar */
         }
 
         /* --- TIMER --- */
@@ -70,7 +74,7 @@
             text-shadow: 2px 2px 8px rgba(0,0,0,0.4); 
             line-height: 1.3;
         }
-        #petunjuk { font-size: 20px; margin-bottom: 25px; line-height: 1.6; font-weight: 400; color: #eef; }
+        #petunjuk { font-size: 18px; margin-bottom: 25px; line-height: 1.6; font-weight: 400; color: #eef; }
 
         /* --- ANIMASI TRANSISI SOAL --- */
         .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
@@ -80,10 +84,10 @@
         }
 
         /* --- TOMBOL PILIHAN GANDA (MODERN) --- */
-        #pilihanGanda { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+        #pilihanGanda { display: flex; flex-direction: column; gap: 12px; margin-bottom: 10px; }
         #pilihanGanda button {
             font-family: 'Poppins', sans-serif; 
-            font-size: 16px; 
+            font-size: 15px; 
             padding: 15px 20px; 
             border: 1px solid rgba(255, 255, 255, 0.3); 
             border-radius: 12px; 
@@ -115,7 +119,7 @@
         #namaPeserta:focus { border: 2px solid #F5D061; box-shadow: 0 0 15px rgba(245, 208, 97, 0.5); background: #ffffff; }
         
         #startButton { 
-            font-size: 20px; padding: 14px 35px; border: none; border-radius: 50px; 
+            font-size: 18px; padding: 14px 35px; border: none; border-radius: 50px; 
             background: linear-gradient(135deg, #F5D061, #e6b12c); color: #1a2a26; 
             cursor: pointer; font-weight: bold; transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(245, 208, 97, 0.4); text-transform: uppercase; letter-spacing: 1px;
@@ -124,31 +128,34 @@
 
         #bismillah { font-size: 16px; color: rgba(255,255,255,0.6); margin-top: 20px; font-style: italic; letter-spacing: 2px;}
         
-        #hasil { font-size: 24px; margin-top: 15px; font-weight: bold; min-height: 36px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+        #hasil { font-size: 22px; margin-top: 15px; font-weight: bold; min-height: 33px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
         
-        #skor { position: absolute; bottom: -40px; right: 0; left: 0; font-size: 16px; font-weight: bold; color: rgba(255,255,255,0.8); text-align: center;}
+        /* SKOR DIRAPIKAN AGAR TIDAK TERPOTONG */
+        #skor { position: absolute; bottom: 20px; right: 0; left: 0; font-size: 16px; font-weight: bold; color: rgba(255,255,255,0.8); text-align: center;}
         #skorBenar { color: #51cf66; }
         #skorSalah { color: #ff6b6b; }
 
         #copyright { position: fixed; bottom: 10px; right: 15px; font-size: 12px; color: rgba(255,255,255,0.5); z-index: 1100; }
 
+        /* POSISI ANIMASI DI POJOK KANAN ATAS */
         #correctAnimation, #wrongAnimation { 
-    position: absolute; 
-    top: 20px; 
-    right: 20px; 
-    width: 100px; 
-    height: 100px; 
-    display: none; 
-    z-index: 1050; 
-    pointer-events: none; 
-}
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            width: 100px; 
+            height: 100px; 
+            display: none; 
+            z-index: 1050; 
+            pointer-events: none; 
+        }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE UNTUK HP */
         @media (max-width: 768px) {
-            #judulGame { font-size: 28px; }
-            #petunjuk { font-size: 16px; }
+            body { padding: 20px 10px; }
+            #judulGame { font-size: 26px; }
+            #petunjuk { font-size: 15px; }
             #pilihanGanda button { font-size: 14px; padding: 12px 15px; }
-            #gameArea { padding: 30px 15px 20px 15px; }
+            #gameArea { padding: 30px 15px 50px 15px; }
             #correctAnimation, #wrongAnimation { width: 70px; height: 70px; top: 15px; right: 15px; }
         }
     </style>
@@ -162,14 +169,14 @@
         
         <div id="startScreen" class="fade-in-up">
             <h1 id="judulGame">Kuis Ngabuburit<br>Ramadhan 1447 H</h1>
-            <p id="petunjuk" style="font-size: 18px;">Uji pengetahuan Islam kamu sambil menunggu waktu berbuka puasa!</p>
+            <p id="petunjuk" style="font-size: 16px;">Uji pengetahuan Islam kamu sambil menunggu waktu berbuka puasa!</p>
             
             <input type="text" id="namaPeserta" placeholder="Ketik Nama Anda Di Sini"><br>
             <button id="startButton">Mulai Kuis</button>
             <p id="bismillah">﷽</p>
         </div>
 
-        <h1 id="judulGameAktif" class="fade-in-up" style="display: none; font-size: 24px; color: #F5D061; margin-bottom: 20px;"></h1>
+        <h1 id="judulGameAktif" class="fade-in-up" style="display: none; font-size: 20px; color: #F5D061; margin-bottom: 15px;"></h1>
         <p id="petunjukSoal" class="fade-in-up" style="display: none;"></p>
         
         <div id="pilihanGanda" class="fade-in-up" style="display: none;">
@@ -185,85 +192,85 @@
         </div>
     </div>
     
-    <div id="copyright">© Mas Har 2024</div>
+    <div id="copyright">© Mas Har 2026</div>
 
     <script>
         // --- SOAL TERBARU ---
         const dataTebakan = [
             { 
-                deskripsi: "Kapan batas waktu terakhir berniat untuk puasa wajib (seperti puasa Ramadhan) agar puasanya sah berdasarkan hadits Hafshah radhiyallahu 'anha?", 
-                jawaban: "Terbitnya fajar shadiq", 
-                pilihan: ["Terbenamnya matahari (awal malam)", "Sepertiga malam terakhir", "Terbitnya fajar shadiq", "Terbitnya matahari (syuruq)"] 
+                deskripsi: "Bagaimana hukum asal seorang wanita melakukan i'tikaf di masjid pada sepuluh hari terakhir bulan Ramadhan?", 
+                jawaban: "Diperbolehkan asalkan aman dari fitnah (seperti ada area khusus wanita) dan mendapatkan izin dari suami atau walinya", 
+                pilihan: ["Dilarang secara mutlak karena tempat beribadah terbaik bagi wanita adalah di relung rumahnya", "Makruh karena berpotensi mengundang fitnah bagi jamaah laki-laki", "Wajib kifayah sebagaimana diwajibkan bagi kaum laki-laki", "Diperbolehkan asalkan aman dari fitnah (seperti ada area khusus wanita) dan mendapatkan izin dari suami atau walinya"] 
             },
             { 
-                deskripsi: "Berapa jumlah saksi minimal yang dipersyaratkan untuk menetapkan masuknya awal bulan Ramadhan (ru'yatul hilal) berdasarkan Sunnah Nabi shallallahu 'alaihi wa sallam?", 
-                jawaban: "Satu orang laki-laki muslim yang adil", 
-                pilihan: ["Satu orang laki-laki muslim yang adil", "Dua orang laki-laki muslim yang adil", "Satu orang laki-laki dan dua orang perempuan", "Keputusan ahli hisab semata"] 
+                deskripsi: "Bolehkah seorang muslim menggabungkan niat puasa Qadha Ramadhan dan puasa sunnah enam hari di bulan Syawal dalam satu hari pelaksanaan puasa (satu niat ganda) untuk mendapatkan dua pahala sekaligus?", 
+                jawaban: "Tidak boleh, karena keduanya adalah ibadah yang masing-masing berdiri sendiri (maqshudah lidzatiha) dan qadha adalah kewajiban yang harus dituntaskan tersendiri", 
+                pilihan: ["Boleh secara mutlak berdasarkan kaidah tadaakhulul ibadaat (penggabungan ibadah yang sejenis)", "Boleh jika dilakukan secara spesifik pada hari Senin atau Kamis", "Tidak boleh, karena keduanya adalah ibadah yang masing-masing berdiri sendiri (maqshudah lidzatiha) dan qadha adalah kewajiban yang harus dituntaskan tersendiri", "Makruh namun puasanya tetap dinilai sah sebagai bagian dari puasa Syawal"] 
             },
             { 
-                deskripsi: "Bagaimana hukum melakukan bekam (hijamah) bagi orang yang berpuasa menurut pendapat yang dikuatkan oleh Imam Ahmad, Syaikhul Islam Ibnu Taimiyah, dan ulama kibar kontemporer berdasarkan hadits \"Aftaharal haajimu wal mahjuum\"?", 
-                jawaban: "Membatalkan puasa bagi yang membekam dan yang dibekam", 
-                pilihan: ["Makruh namun puasa tetap sah", "Mubah (diperbolehkan) secara mutlak", "Haram tetapi tidak membatalkan puasa", "Membatalkan puasa bagi yang membekam dan yang dibekam"] 
+                deskripsi: "Seseorang mencabut gigi di siang hari Ramadhan dan dokter memberikan suntikan bius lokal (anestesi gusi) kepadanya agar tidak merasa sakit. Apakah suntikan bius tersebut membatalkan puasanya?", 
+                jawaban: "Tidak membatalkan puasa karena suntikan bius bukanlah cairan pengganti nutrisi/makanan, dan tidak masuk ke lambung", 
+                pilihan: ["Membatalkan puasa karena cairan obat disuntikkan masuk ke dalam aliran darah", "Membatalkan puasa karena rasa sakit yang hilang digantikan oleh cairan bius", "Tidak membatalkan puasa karena suntikan bius bukanlah cairan pengganti nutrisi/makanan, dan tidak masuk ke lambung", "Makruh karena berisiko menelan darah yang keluar dari gusi"] 
             },
             { 
-                deskripsi: "Bagi seorang musafir (orang yang dalam perjalanan) di bulan Ramadhan, dan ia merasa fisiknya mampu serta tidak memberatkan jika berpuasa maupun berbuka, manakah yang lebih afdhal baginya menurut kesepakatan mayoritas ulama dan pandangan Syaikh Ibnu Utsaimin?", 
-                jawaban: "Berpuasa karena lebih cepat menggugurkan kewajiban dan bertepatan dengan bulan yang mulia", 
-                pilihan: ["Berbuka karena mengambil rukhshah (keringanan) adalah wajib", "Berpuasa karena lebih cepat menggugurkan kewajiban dan bertepatan dengan bulan yang mulia", "Berbuka jika perjalanannya lebih dari jarak qashar shalat", "Boleh diundi karena keduanya sama-sama sunnah"] 
+                deskripsi: "Bagaimana hukum orang yang berpuasa mandi dengan cara mengguyur kepala, berendam di air dingin, atau mendinginkan kepalanya dengan kain basah di siang hari Ramadhan karena cuaca yang sangat terik?", 
+                jawaban: "Mubah (diperbolehkan) berdasarkan riwayat perbuatan Nabi shallallahu 'alaihi wa sallam dan sahabat Ibnu Umar", 
+                pilihan: ["Makruh karena dapat menghilangkan rasa haus yang merupakan bagian dari ujian orang berpuasa", "Haram jika dilakukan secara sengaja setelah tergelincir matahari (waktu Zhuhur)", "Mubah (diperbolehkan) berdasarkan riwayat perbuatan Nabi shallallahu 'alaihi wa sallam dan sahabat Ibnu Umar", "Membatalkan puasa jika hawa dinginnya meresap terasa ke dalam tubuh"] 
             },
             { 
-                deskripsi: "Di antara tanda-tanda pagi hari setelah malam Lailatul Qadar yang disebutkan secara shahih dalam hadits riwayat Imam Muslim dari sahabat Ubay bin Ka'ab radhiyallahu 'anhu adalah...", 
-                jawaban: "Matahari terbit berwarna putih bersih tanpa sinar yang menyilaukan", 
-                pilihan: ["Turun hujan rintik-rintik yang sejuk di pagi hari", "Udara terasa sangat dingin dan berkabut tebal", "Matahari terbit berwarna putih bersih tanpa sinar yang menyilaukan", "Matahari terbit dengan warna merah pekat seperti darah"] 
+                deskripsi: "Seorang wanita yang sedang berpuasa mendapati darah haid keluar lima menit sebelum azan Maghrib berkumandang. Bagaimana status puasanya pada hari tersebut menurut ijma' para ulama?", 
+                jawaban: "Puasanya batal dan ia wajib mengqadha puasa hari itu di luar Ramadhan", 
+                pilihan: ["Puasanya tetap sah karena darah keluar sudah sangat mendekati waktu berbuka", "Puasanya sah namun pahalanya berkurang setengahnya", "Puasanya batal dan ia wajib mengqadha puasa hari itu di luar Ramadhan", "Puasanya batal namun ia diampuni dan tidak perlu mengqadha karena bukan unsur kesengajaan"] 
             },
             { 
-                deskripsi: "Menurut fatwa dari sahabat yang mulia, Ibnu Abbas dan Ibnu Umar radhiyallahu 'anhuma, apa kewajiban bagi wanita hamil dan menyusui yang berbuka puasa karena khawatir terhadap kondisi fisik janin atau bayinya?", 
-                jawaban: "Hanya wajib membayar fidyah (memberi makan orang miskin) tanpa qadha", 
-                pilihan: ["Hanya wajib mengqadha puasa di hari lain", "Wajib mengqadha puasa sekaligus membayar fidyah", "Hanya wajib membayar fidyah (memberi makan orang miskin) tanpa qadha", "Wajib membayar kaffarah mudhalazah (berpuasa dua bulan berturut-turut)"] 
+                deskripsi: "Jika seseorang diwajibkan membayar Fidyah, lalu ia menunaikannya dengan cara mengundang beberapa orang miskin untuk makan malam makanan matang di rumahnya sampai mereka kenyang. Apakah cara ini sah berdasarkan perbuatan sahabat Anas bin Malik radhiyallahu 'anhu?", 
+                jawaban: "Sah, dan ini termasuk cara yang diperbolehkan dalam menunaikan fidyah", 
+                pilihan: ["Tidak sah, karena fidyah wajib dibagikan murni dalam bentuk beras/biji-bijian yang mentah", "Sah, dan ini termasuk cara yang diperbolehkan dalam menunaikan fidyah", "Sah asalkan ditambah dengan pemberian uang tunai sebagai lauk-pauk", "Makruh, karena makanan matang tidak bisa disimpan lama oleh fakir miskin"] 
             },
             { 
-                deskripsi: "Kaffarah bagi seseorang yang merusak puasanya di siang hari Ramadhan dengan jima' (berhubungan suami istri) memiliki urutan syar'i. Jika ia tidak mampu memerdekakan budak, maka apa yang wajib ia lakukan pada urutan kedua berdasarkan hadits Abu Hurairah radhiyallahu 'anhu?", 
-                jawaban: "Berpuasa dua bulan berturut-turut", 
-                pilihan: ["Memberi makan 60 orang miskin", "Berpuasa dua bulan berturut-turut", "Membayar fidyah sebesar setengah sha' kurma", "Menyembelih seekor kambing dan dibagikan kepada fakir miskin"] 
+                deskripsi: "Apakah melakukan donor darah (mengeluarkan darah dalam jumlah yang cukup banyak) membatalkan puasa seseorang menurut qiyas (analogi) yang dikuatkan oleh Syaikh Ibnu Utsaimin?", 
+                jawaban: "Membatalkan puasa karena diqiyaskan dengan hukum bekam yang menguras tenaga dan melemahkan tubuh", 
+                pilihan: ["Tidak membatalkan karena darah dikeluarkan dari tubuh, bukan dimasukkan ke dalam tubuh", "Boleh dan justru dianjurkan karena berniat menolong nyawa orang lain", "Makruh tahrim namun puasanya tetap dinilai sah", "Membatalkan puasa karena diqiyaskan dengan hukum bekam yang menguras tenaga dan melemahkan tubuh"] 
             },
             { 
-                deskripsi: "Apabila seseorang yang sedang berpuasa tiba-tiba muntah tanpa disengaja (terkalahkan oleh rasa mual/sakit), maka apa status puasanya berdasarkan hadits dari Abu Hurairah radhiyallahu 'anhu?", 
-                jawaban: "Puasanya tetap sah, tidak batal, dan ia melanjutkannya", 
-                pilihan: ["Puasanya batal dan wajib mengqadha", "Puasanya batal dan wajib qadha serta membayar fidyah", "Puasanya makruh dan dianjurkan untuk segera berbuka", "Puasanya tetap sah, tidak batal, dan ia melanjutkannya"] 
+                deskripsi: "Seorang musafir yang sedang tidak berpuasa (mengambil rukhshah safar) tiba di kampung halamannya dalam keadaan mukim pada pukul 10 pagi di bulan Ramadhan. Apakah ia diwajibkan menahan diri dari makan dan minum (imsak) hingga Maghrib pada hari itu menurut pendapat yang dikuatkan oleh Syaikh Ibnu Utsaimin?", 
+                jawaban: "Tidak wajib menahan diri (boleh makan/minum sembunyi-sembunyi) namun tetap wajib mengqadha di hari lain", 
+                pilihan: ["Wajib menahan diri hingga Maghrib dan puasanya dihitung sah pada hari itu", "Wajib menahan diri hingga Maghrib namun tetap wajib mengqadha di hari lain", "Tidak wajib menahan diri (boleh makan/minum sembunyi-sembunyi) namun tetap wajib mengqadha di hari lain", "Makruh jika ia makan/minum, dan jika ia puasa maka puasanya sah"] 
             },
             { 
-                deskripsi: "Jika seorang makmum ikut shalat Tarawih bersama imam hingga selesai (termasuk shalat Witir bersama imam hingga imam salam), apa keutamaan spesifik yang ia dapatkan berdasarkan hadits riwayat Tirmidzi?", 
-                jawaban: "Dicatat baginya pahala shalat tahajud semalam suntuk", 
-                pilihan: ["Dicatat baginya pahala haji dan umrah yang mabrur", "Diampuni seluruh dosa besarnya di masa lalu", "Dicatat baginya pahala shalat tahajud semalam suntuk", "Dibangunkan untuknya sebuah istana dari mutiara di surga"] 
+                deskripsi: "Salah satu sunnah berpuasa adalah menyegerakan berbuka (Ta'jil). Kapan waktu yang tepat untuk segera membatalkan puasa menurut Sunnah Nabi shallallahu 'alaihi wa sallam?", 
+                jawaban: "Sesaat setelah terbenamnya bulatan matahari secara sempurna meskipun muadzin belum selesai azan Maghrib", 
+                pilihan: ["Saat azan Isya berkumandang", "Sesaat setelah terbenamnya bulatan matahari secara sempurna meskipun muadzin belum selesai azan Maghrib", "Menunggu sampai langit benar-benar menjadi gelap dan bintang bermunculan", "Menunggu jamaah berkumpul di masjid terlebih dahulu"] 
             },
             { 
-                deskripsi: "Dalam mengeluarkan Zakat Fitrah, manhaj para ulama kibar (seperti Syaikh Abdul Aziz bin Baz dan Syaikh Al-Albani rahimahumallah) yang berpegang pada zhahir hadits Ibnu Umar radhiyallahu 'anhuma menyatakan bahwa Zakat Fitrah wajib dikeluarkan dalam bentuk...", 
-                jawaban: "Makanan pokok penduduk setempat (seperti beras, gandum, atau kurma)", 
-                pilihan: ["Uang tunai yang setara dengan harga makanan pokok", "Makanan pokok penduduk setempat (seperti beras, gandum, atau kurma)", "Pakaian baru atau perlengkapan ibadah untuk kaum fakir", "Dirham perak atau Dinar emas"] 
+                deskripsi: "Bagaimana hukum mencicipi masakan bagi orang yang sedang memasak untuk berbuka puasa, dengan syarat tidak ada bagian makanan yang ditelan (langsung diludahkan kembali) berdasarkan atsar Ibnu Abbas?", 
+                jawaban: "Boleh (mubah) dan puasanya tetap sah karena ada kebutuhan", 
+                pilihan: ["Haram dan membatalkan puasa", "Makruh dan mengurangi kesempurnaan pahala puasa", "Boleh (mubah) dan puasanya tetap sah karena ada kebutuhan", "Sunnah bagi ibu rumah tangga"] 
             },
             { 
-                deskripsi: "Seseorang makan dan minum di siang hari bulan Ramadhan karena ia benar-benar lupa bahwa ia sedang berpuasa. Setelah ia teringat, apa yang wajib ia lakukan?", 
-                jawaban: "Meneruskan puasanya hingga maghrib, karena Allah yang telah memberinya makan dan minum", 
-                pilihan: ["Memuntahkan kembali makanannya lalu mengqadha puasanya kelak", "Meneruskan puasanya hingga maghrib, karena Allah yang telah memberinya makan dan minum", "Puasanya batal seketika dan ia bebas makan minum di sisa hari itu", "Meneruskan puasanya, namun tetap wajib mengqadha di hari lain sebagai ganti"] 
+                deskripsi: "Perbedaan waktu niat antara puasa wajib (seperti Ramadhan) dan puasa sunnah menurut hadits Aisyah radhiyallahu 'anhaadalah...", 
+                jawaban: "Puasa wajib harus diniatkan di malam hari, sedangkan puasa sunnah boleh diniatkan di pagi hari (selama belum makan/minum)", 
+                pilihan: ["Keduanya wajib diniatkan pada malam hari sebelum Subuh", "Puasa wajib harus diniatkan di malam hari, sedangkan puasa sunnah boleh diniatkan di pagi hari (selama belum makan/minum)", "Keduanya boleh diniatkan pada siang hari asalkan belum masuk waktu Zuhur", "Puasa sunnah harus diniatkan sebulan penuh di awal bulan"] 
             },
             { 
-                deskripsi: "Bagaimana hukum menggunakan suntikan nutrisi (infus pengganti makanan/minuman) bagi orang yang berpuasa menurut ketetapan Majma' Fiqh Islami dan mayoritas ulama muhaqqiqin?", 
-                jawaban: "Membatalkan puasa karena secara fungsi semakna dengan makan dan minum", 
-                pilihan: ["Tidak membatalkan puasa karena cairan masuk bukan melalui lubang alami (mulut/hidung)", "Membatalkan puasa karena secara fungsi semakna dengan makan dan minum", "Makruh tahrim, namun puasanya sah dan tidak perlu diqadha", "Mubah mutlak selama tidak ada rasa yang dikecap di lidah"] 
+                deskripsi: "Sepasang suami istri berhubungan di malam Ramadhan, lalu mereka tertidur lelap dan baru terbangun setelah azan Subuh berkumandang dalam keadaan belum mandi junub. Apa hukum puasa mereka pada hari itu berdasarkan hadits Aisyah dan Ummu Salamah?", 
+                jawaban: "Sah, mereka berdua cukup mandi junub lalu shalat Subuh dan melanjutkan puasa", 
+                pilihan: ["Puasanya batal dan mereka wajib qadha", "Sah, mereka berdua cukup mandi junub lalu shalat Subuh dan melanjutkan puasa", "Batal karena syarat puasa adalah harus suci dari hadats besar semenjak sebelum fajar", "Sah, namun mereka diwajibkan membayar fidyah"] 
             },
             { 
-                deskripsi: "Salah satu syarat sahnya i'tikaf di sepuluh hari terakhir Ramadhan adalah menetap di dalam masjid. Kapan seorang mu'takif (orang yang i'tikaf) diperbolehkan keluar dari masjid tanpa membatalkan ibadah i'tikafnya?", 
-                jawaban: "Keluar untuk membuang hajat (ke toilet) atau mengambil makanan jika tidak ada yang membawakannya", 
-                pilihan: ["Keluar untuk membuang hajat (ke toilet) atau mengambil makanan jika tidak ada yang membawakannya", "Keluar untuk bekerja paruh waktu atau berdagang di pasar terdekat", "Keluar untuk sekadar berjalan-jalan menghirup udara segar agar tidak jenuh", "Keluar untuk menjenguk orang sakit meskipun tidak ada kondisi darurat"] 
+                deskripsi: "Sesuai dengan urutan sunnah Nabi shallallahu 'alaihi wa sallam yang diriwayatkan dari Anas bin Malik radhiyallahu 'anhu, makanan atau minuman apa yang paling utama (afdhal) didahulukan untuk membatalkan puasa?", 
+                jawaban: "Kurma basah (ruthab), jika tidak ada maka kurma kering (tamr), jika tidak ada maka tegukan air putih", 
+                pilihan: ["Kurma kering (tamr), lalu kurma basah (ruthab), lalu air putih", "Air zam-zam, lalu susu murni, lalu kurma kering (tamr)", "Kurma basah (ruthab), jika tidak ada maka kurma kering (tamr), jika tidak ada maka tegukan air putih", "Makanan atau minuman apa saja yang manis rasanya"] 
             },
             { 
-                deskripsi: "Apabila seseorang menelan sisa makanan berukuran sangat kecil yang berada di sela-sela giginya karena mengalir bersama ludah tanpa bisa ia hindari (tanpa disengaja), bagaimana hukum puasanya menurut ijma' para ulama?", 
-                jawaban: "Puasanya tetap sah dan tidak batal", 
-                pilihan: ["Puasanya batal dan wajib membayar kaffarah", "Puasanya batal dan wajib mengqadha di luar Ramadhan", "Puasanya tetap sah dan tidak batal", "Puasanya sah namun pahala puasanya berkurang drastis"] 
+                deskripsi: "Di masyarakat kita sering dikenal istilah waktu \"Imsak\" (biasanya 10 menit sebelum azan Subuh). Kapankah batas akhir yang sesungguhnya bagi seseorang untuk berhenti makan dan minum sahur menurut nash Al-Qur'an dan Sunnah?", 
+                jawaban: "Saat terbitnya fajar shadiq, yang di masa kini ditandai dengan berkumandangnya azan shalat Subuh yang tepat waktu", 
+                pilihan: ["Saat sirine atau jadwal Imsak tersebut tiba, sebagai bentuk kehati-hatian yang diwajibkan", "Saat terbitnya fajar shadiq, yang di masa kini ditandai dengan berkumandangnya azan shalat Subuh yang tepat waktu", "Saat azan Subuh benar-benar telah selesai dikumandangkan oleh muadzin", "Saat langit mulai terlihat terang benderang dan matahari bersiap terbit"] 
             },
             { 
-                deskripsi: "Rasulullah shallallahu 'alaihi wa sallam sangat menganjurkan umatnya untuk mengakhirkan waktu sahur. Berdasarkan hadits dari Anas bin Malik dari Zaid bin Tsabit radhiyallahu 'anhu, berapakah perkiraan jarak waktu antara selesainya sahurnya Rasulullah dengan azan shalat Subuh?", 
-                jawaban: "Sekitar waktu yang dibutuhkan untuk membaca 50 ayat Al-Qur'an", 
-                pilihan: ["Sekitar waktu yang dibutuhkan untuk membaca 10 ayat Al-Qur'an", "Sekitar waktu yang dibutuhkan untuk membaca 50 ayat Al-Qur'an", "Sekitar waktu yang dibutuhkan untuk membaca 100 ayat Al-Qur'an", "Sekitar waktu yang dibutuhkan untuk membaca 1 juz Al-Qur'an"] 
+                deskripsi: "Bagaimana hukum seorang suami mencium istrinya di siang hari bulan Ramadhan menurut sunnah yang dicontohkan oleh Rasulullah shallallahu 'alaihi wa sallam dan penjelasan Aisyah radhiyallahu 'anha?", 
+                jawaban: "Diperbolehkan bagi orang yang mampu menahan syahwatnya, namun terlarang/makruh bagi yang khawatir hal itu akan memancingnya kepada jima' (hubungan intim)", 
+                pilihan: ["Batal puasanya secara mutlak dan ia wajib membayar kaffarah (denda)", "Haram dan berdosa, meskipun puasanya tetap dinilai sah", "Makruh tahrim bagi semua kalangan, baik pemuda maupun orang tua tanpa pengecualian", "Diperbolehkan bagi orang yang mampu menahan syahwatnya, namun terlarang/makruh bagi yang khawatir hal itu akan memancingnya kepada jima' (hubungan intim)"] 
             }
         ];
 
@@ -444,7 +451,7 @@
             const learnBtn = document.createElement("button");
             learnBtn.textContent = "📖 Bonus e-Book Ramadhan";
             learnBtn.onclick = () => window.location.href = 'https://drive.google.com/file/d/1hWKJqHEpmtaPVIaIVBsbU_2iFRCKIZS6/view';
-            Object.assign(learnBtn.style, { fontSize: "18px", padding: "14px 25px", marginTop: "30px", border: "none", borderRadius: "50px", background: "linear-gradient(135deg, #F5D061, #e6b12c)", color: "#1a2a26", cursor: "pointer", fontWeight: "bold", transition: "0.3s", boxShadow: "0 4px 15px rgba(245, 208, 97, 0.4)" });
+            Object.assign(learnBtn.style, { fontSize: "16px", padding: "12px 20px", marginTop: "30px", border: "none", borderRadius: "50px", background: "linear-gradient(135deg, #F5D061, #e6b12c)", color: "#1a2a26", cursor: "pointer", fontWeight: "bold", transition: "0.3s", boxShadow: "0 4px 15px rgba(245, 208, 97, 0.4)" });
             learnBtn.onmouseover = () => learnBtn.style.transform = "scale(1.05)";
             learnBtn.onmouseout = () => learnBtn.style.transform = "scale(1)";
             document.getElementById("gameArea").appendChild(learnBtn);
