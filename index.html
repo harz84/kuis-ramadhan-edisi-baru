@@ -24,7 +24,7 @@
         body {
             display: flex; justify-content: center; align-items: flex-start; 
             min-height: 100vh;
-            padding: 40px 15px; 
+            padding: 80px 15px 40px 15px; /* Menambah ruang atas agar tidak tertutup timer melayang */
             background: linear-gradient(-45deg, #0f3e33, #155d4c, #0a2e3f, #1f2b38);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -54,16 +54,25 @@
             margin: auto; 
         }
 
-        /* --- TIMER --- */
+        /* --- TIMER MELAYANG (FLOATING) --- */
         #timerContainer { 
-            display: flex; justify-content: center; align-items: center; margin-bottom: 20px; 
-            background: rgba(0, 0, 0, 0.2);
+            position: fixed; /* Membuatnya selalu menempel di layar */
+            top: 15px; 
+            left: 50%; 
+            transform: translateX(-50%); /* Menempatkannya tepat di tengah */
+            z-index: 1200; /* Selalu di lapisan paling atas */
+            display: none; 
+            justify-content: center; 
+            align-items: center; 
+            background: rgba(0, 0, 0, 0.75); /* Sedikit gelap agar kontras dengan soal */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
-            padding: 5px 20px;
-            display: inline-flex;
+            padding: 8px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
-        #timerIcon { width: 30px; height: 30px; margin-right: 10px; filter: brightness(0) invert(1); }
-        #timer { font-size: 32px; font-weight: 700; color: #fff; letter-spacing: 2px; }
+        #timerIcon { width: 28px; height: 28px; margin-right: 10px; filter: brightness(0) invert(1); }
+        #timer { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: 2px; margin: 0; line-height: 1; }
         
         .pulse-danger { animation: pulseRed 1s infinite; color: #ff6b6b !important; }
         @keyframes pulseRed { 0% { transform: scale(1); } 50% { transform: scale(1.1); text-shadow: 0 0 10px red; } 100% { transform: scale(1); } }
@@ -140,10 +149,10 @@
         /* POSISI ANIMASI DI SAMPING KANAN TEKS JUDUL SOAL */
         #correctAnimation, #wrongAnimation { 
             position: absolute; 
-            left: 100%; /* Berada di sebelah kanan elemen teks */
+            left: 100%; 
             top: 50%; 
             transform: translateY(-50%); 
-            margin-left: 12px; /* Jarak antara teks dan centang */
+            margin-left: 12px; 
             width: 50px; 
             height: 50px; 
             display: none; 
@@ -153,22 +162,27 @@
 
         /* RESPONSIVE UNTUK HP */
         @media (max-width: 768px) {
-            body { padding: 20px 10px; }
+            body { padding: 70px 10px 20px 10px; } /* Jarak atas ditambah agar timer tidak menutupi kuis */
             #judulGame { font-size: 26px; }
             #petunjuk { font-size: 15px; }
             #pilihanGanda button { font-size: 14px; padding: 12px 15px; }
             #gameArea { padding: 30px 15px 50px 15px; }
             #correctAnimation, #wrongAnimation { width: 45px; height: 45px; margin-left: 8px; }
+            
+            /* Penyesuaian Timer untuk HP */
+            #timerContainer { top: 10px; padding: 6px 15px; }
+            #timer { font-size: 22px; }
+            #timerIcon { width: 20px; height: 20px; }
         }
     </style>
 </head>
 <body>
+    <div id="timerContainer" style="display: none;">
+        <img id="timerIcon" src="https://img.icons8.com/ios-filled/50/ffffff/hourglass.png" alt="Hourglass">
+        <span id="timer">05:00</span>
+    </div>
+
     <div id="gameArea">
-        <div id="timerContainer" style="display: none;">
-            <img id="timerIcon" src="https://img.icons8.com/ios-filled/50/ffffff/hourglass.png" alt="Hourglass">
-            <span id="timer">05:00</span>
-        </div>
-        
         <div id="startScreen" class="fade-in-up">
             <h1 id="judulGame">Kuis Ngabuburit<br>Ramadhan 1447 H</h1>
             <p id="petunjuk" style="font-size: 16px;">Uji pengetahuan Islam kamu sambil menunggu waktu berbuka puasa!</p>
@@ -336,7 +350,7 @@
 
         function mulaiPermainan() {
             document.getElementById("startScreen").style.display = "none";
-            document.getElementById("timerContainer").style.display = "inline-flex";
+            document.getElementById("timerContainer").style.display = "flex"; // Timer dimunculkan dengan flex
             
             const judulSoalWrapper = document.getElementById("judulSoalWrapper");
             const judulGameAktif = document.getElementById("judulGameAktif");
@@ -458,7 +472,7 @@
             // Tombol Bonus eBook
             const learnBtn = document.createElement("button");
             learnBtn.textContent = "📖 Bonus e-Book Ramadhan";
-            learnBtn.onclick = () => window.location.href = 'https://drive.google.com/file/d/1Hyh8wZ7K5l2t4aTCtxqXlH8vFnL-C2Qb/view?usp=sharing';
+            learnBtn.onclick = () => window.location.href = 'https://drive.google.com/file/d/1hWKJqHEpmtaPVIaIVBsbU_2iFRCKIZS6/view';
             Object.assign(learnBtn.style, { fontSize: "16px", padding: "12px 20px", marginTop: "30px", border: "none", borderRadius: "50px", background: "linear-gradient(135deg, #F5D061, #e6b12c)", color: "#1a2a26", cursor: "pointer", fontWeight: "bold", transition: "0.3s", boxShadow: "0 4px 15px rgba(245, 208, 97, 0.4)" });
             learnBtn.onmouseover = () => learnBtn.style.transform = "scale(1.05)";
             learnBtn.onmouseout = () => learnBtn.style.transform = "scale(1)";
