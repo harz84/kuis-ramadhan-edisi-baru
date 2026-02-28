@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     
@@ -24,7 +24,7 @@
         body {
             display: flex; justify-content: center; align-items: flex-start; 
             min-height: 100vh;
-            padding: 80px 15px 40px 15px; /* Menambah ruang atas agar tidak tertutup timer melayang */
+            padding: 80px 15px 40px 15px;
             background: linear-gradient(-45deg, #0f3e33, #155d4c, #0a2e3f, #1f2b38);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -56,15 +56,15 @@
 
         /* --- TIMER MELAYANG (FLOATING) --- */
         #timerContainer { 
-            position: fixed; /* Membuatnya selalu menempel di layar */
+            position: fixed; 
             top: 15px; 
             left: 50%; 
-            transform: translateX(-50%); /* Menempatkannya tepat di tengah */
-            z-index: 1200; /* Selalu di lapisan paling atas */
+            transform: translateX(-50%); 
+            z-index: 1200; 
             display: none; 
             justify-content: center; 
             align-items: center; 
-            background: rgba(0, 0, 0, 0.75); /* Sedikit gelap agar kontras dengan soal */
+            background: rgba(0, 0, 0, 0.75); 
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
@@ -84,6 +84,27 @@
             line-height: 1.3;
         }
         #petunjuk { font-size: 18px; margin-bottom: 25px; line-height: 1.6; font-weight: 400; color: #eef; }
+
+        /* --- PROGRESS BAR (FITUR BARU) --- */
+        #progressBarContainer {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: none;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        #progressBar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #F5D061, #e6b12c);
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+            box-shadow: 0 0 10px rgba(245, 208, 97, 0.6);
+        }
 
         /* --- ANIMASI TRANSISI SOAL --- */
         .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
@@ -135,8 +156,17 @@
         }
         #startButton:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(245, 208, 97, 0.6); }
 
-        /* TEKS BISMILLAH DIPERBESAR */
-        #bismillah { font-size: 40px; color: rgba(255,255,255,0.8); margin-top: 15px; font-style: normal; font-weight: normal;}
+        /* TEKS BISMILLAH (DIPERBARUI DENGAN FONT AMIRI) */
+        #bismillah { 
+            font-family: 'Amiri', serif;
+            font-size: 48px; 
+            color: #F5D061; 
+            margin-top: 25px; 
+            font-style: normal; 
+            font-weight: normal;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            line-height: 1;
+        }
         
         #hasil { font-size: 22px; margin-top: 15px; font-weight: bold; min-height: 33px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
         
@@ -162,17 +192,17 @@
 
         /* RESPONSIVE UNTUK HP */
         @media (max-width: 768px) {
-            body { padding: 70px 10px 20px 10px; } /* Jarak atas ditambah agar timer tidak menutupi kuis */
+            body { padding: 70px 10px 20px 10px; }
             #judulGame { font-size: 26px; }
             #petunjuk { font-size: 15px; }
             #pilihanGanda button { font-size: 14px; padding: 12px 15px; }
             #gameArea { padding: 30px 15px 50px 15px; }
             #correctAnimation, #wrongAnimation { width: 45px; height: 45px; margin-left: 8px; }
             
-            /* Penyesuaian Timer untuk HP */
             #timerContainer { top: 10px; padding: 6px 15px; }
             #timer { font-size: 22px; }
             #timerIcon { width: 20px; height: 20px; }
+            #bismillah { font-size: 40px; }
         }
     </style>
 </head>
@@ -187,9 +217,13 @@
             <h1 id="judulGame">Kuis Ngabuburit<br>Ramadhan 1447 H</h1>
             <p id="petunjuk" style="font-size: 16px;">Uji pengetahuan Islam kamu sambil menunggu waktu berbuka puasa!</p>
             
-            <input type="text" id="namaPeserta" placeholder="Ketik Nama Anda Di Sini"><br>
+            <input type="text" id="namaPeserta" placeholder="Ketik Nama (misal: Hartoyo)"><br>
             <button id="startButton">Mulai Kuis</button>
             <p id="bismillah">﷽</p>
+        </div>
+
+        <div id="progressBarContainer" class="fade-in-up">
+            <div id="progressBar"></div>
         </div>
 
         <div id="judulSoalWrapper" class="fade-in-up" style="display: none; text-align: center; margin-bottom: 15px;">
@@ -203,7 +237,7 @@
         <p id="petunjukSoal" class="fade-in-up" style="display: none;"></p>
         
         <div id="pilihanGanda" class="fade-in-up" style="display: none;">
-            </div>
+        </div>
         
         <p id="hasil"></p>
         
@@ -350,7 +384,8 @@
 
         function mulaiPermainan() {
             document.getElementById("startScreen").style.display = "none";
-            document.getElementById("timerContainer").style.display = "flex"; // Timer dimunculkan dengan flex
+            document.getElementById("timerContainer").style.display = "flex"; 
+            document.getElementById("progressBarContainer").style.display = "block"; // Menampilkan progress bar
             
             const judulSoalWrapper = document.getElementById("judulSoalWrapper");
             const judulGameAktif = document.getElementById("judulGameAktif");
@@ -378,6 +413,10 @@
             judulGameAktif.textContent = `Soal ${nomorSoal} dari ${totalSoal}`;
             petunjukSoal.textContent = soalSaatIni.deskripsi;
             
+            // Update lebar progress bar
+            const presentaseProgress = (nomorSoal / totalSoal) * 100;
+            document.getElementById("progressBar").style.width = `${presentaseProgress}%`;
+
             triggerAnimation("judulSoalWrapper");
             triggerAnimation("petunjukSoal");
             triggerAnimation("pilihanGanda");
@@ -443,6 +482,7 @@
 
             document.getElementById("judulGameAktif").textContent = "Kuis Selesai!";
             document.getElementById("timerContainer").style.display = "none";
+            document.getElementById("progressBarContainer").style.display = "none"; // Sembunyikan progress bar di akhir
             document.getElementById("skor").style.display = "none";
             document.getElementById("pilihanGanda").style.display = "none";
             document.getElementById("hasil").style.display = "none";
