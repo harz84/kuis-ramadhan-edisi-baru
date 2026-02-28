@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     
@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* --- BACKGROUND & PERBAIKAN LAYAR HP --- */
         body {
             display: flex; justify-content: center; align-items: flex-start; 
             min-height: 100vh;
@@ -38,7 +37,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- GLASSMORPHISM GAME AREA --- */
         #gameArea {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
@@ -54,7 +52,6 @@
             margin: auto; 
         }
 
-        /* --- TIMER MELAYANG (FLOATING) --- */
         #timerContainer { 
             position: fixed; 
             top: 15px; 
@@ -77,7 +74,6 @@
         .pulse-danger { animation: pulseRed 1s infinite; color: #ff6b6b !important; }
         @keyframes pulseRed { 0% { transform: scale(1); } 50% { transform: scale(1.1); text-shadow: 0 0 10px red; } 100% { transform: scale(1); } }
 
-        /* --- TYPOGRAPHY --- */
         #judulGame { 
             font-size: 36px; color: #F5D061; margin-bottom: 15px; font-weight: 700; 
             text-shadow: 2px 2px 8px rgba(0,0,0,0.4); 
@@ -85,7 +81,7 @@
         }
         #petunjuk { font-size: 18px; margin-bottom: 25px; line-height: 1.6; font-weight: 400; color: #eef; }
 
-        /* --- PROGRESS BAR (FITUR BARU) --- */
+        /* --- PROGRESS BAR --- */
         #progressBarContainer {
             width: 100%;
             height: 12px;
@@ -106,14 +102,12 @@
             box-shadow: 0 0 10px rgba(245, 208, 97, 0.6);
         }
 
-        /* --- ANIMASI TRANSISI SOAL --- */
         .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- TOMBOL PILIHAN GANDA (MODERN) --- */
         #pilihanGanda { display: flex; flex-direction: column; gap: 12px; margin-bottom: 10px; }
         #pilihanGanda button {
             font-family: 'Poppins', sans-serif; 
@@ -139,7 +133,6 @@
 
         @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } 100% { transform: translateX(0); } }
 
-        /* --- INPUT & TOMBOL MULAI --- */
         #namaPeserta {
             padding: 15px; margin-bottom: 25px; font-size: 16px; border-radius: 12px; 
             border: 2px solid transparent; width: 85%; max-width: 320px; text-align: center;
@@ -156,20 +149,13 @@
         }
         #startButton:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(245, 208, 97, 0.6); }
 
-        /* TEKS BISMILLAH (DIPERBARUI DENGAN FONT AMIRI) */
+        /* Teks Bismillah kembali ke versi standar, aman untuk HP */
         #bismillah { 
-            font-family: 'Amiri', serif;
-            /* Gunakan clamp agar dinamis: minimal 24px, ideal 8vw (menyesuaikan layar), maksimal 48px */
-            font-size: clamp(24px, 8vw, 48px); 
+            font-size: 32px; 
             color: #F5D061; 
-            margin-top: 20px; 
-            font-style: normal; 
+            margin-top: 25px; 
             font-weight: normal;
             text-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            line-height: 1.5;
-            width: 100%;
-            text-align: center;
-            overflow: hidden; /* Mencegah memanjangkan layar ke samping */
         }
         
         #hasil { font-size: 22px; margin-top: 15px; font-weight: bold; min-height: 33px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
@@ -180,7 +166,6 @@
 
         #copyright { position: fixed; bottom: 10px; right: 15px; font-size: 12px; color: rgba(255,255,255,0.5); z-index: 1100; }
 
-        /* POSISI ANIMASI DI SAMPING KANAN TEKS JUDUL SOAL */
         #correctAnimation, #wrongAnimation { 
             position: absolute; 
             left: 100%; 
@@ -207,6 +192,8 @@
             #timer { font-size: 22px; }
             #timerIcon { width: 20px; height: 20px; }
             
+            /* Penyesuaian ukuran bismillah di HP */
+            #bismillah { font-size: 26px; }
         }
     </style>
 </head>
@@ -221,7 +208,7 @@
             <h1 id="judulGame">Kuis Ngabuburit<br>Ramadhan 1447 H</h1>
             <p id="petunjuk" style="font-size: 16px;">Uji pengetahuan Islam kamu sambil menunggu waktu berbuka puasa!</p>
             
-            <input type="text" id="namaPeserta" placeholder="Ketik Nama (misal: Bahlil)"><br>
+            <input type="text" id="namaPeserta" placeholder="Ketik Nama (misal: Hartoyo)"><br>
             <button id="startButton">Mulai Kuis</button>
             <p id="bismillah">﷽</p>
         </div>
@@ -332,13 +319,11 @@
             }
         ];
 
-        // --- Variabel Global ---
         let soalSaatIni; let jawabanBenar = false; let skorBenar = 0; let skorSalah = 0; 
         let soalSudahDitampilkan = new Set(); let nomorSoal = 0; const totalSoal = 15; 
-        let timerInterval = null; let timeLeft = 720; // 7 menit
+        let timerInterval = null; let timeLeft = 720; 
         let isGameOverSoundPlayed = false; let namaUser = "";
 
-        // --- Audio Sederhana ---
         function playSound(type) {
             let src = '';
             if(type === 'start') src = 'ping.wav';
@@ -373,7 +358,7 @@
         function triggerAnimation(elementId) {
             const el = document.getElementById(elementId);
             el.classList.remove("fade-in-up");
-            void el.offsetWidth; // trigger reflow
+            void el.offsetWidth; 
             el.classList.add("fade-in-up");
         }
 
@@ -389,7 +374,7 @@
         function mulaiPermainan() {
             document.getElementById("startScreen").style.display = "none";
             document.getElementById("timerContainer").style.display = "flex"; 
-            document.getElementById("progressBarContainer").style.display = "block"; // Menampilkan progress bar
+            document.getElementById("progressBarContainer").style.display = "block"; 
             
             const judulSoalWrapper = document.getElementById("judulSoalWrapper");
             const judulGameAktif = document.getElementById("judulGameAktif");
@@ -417,7 +402,6 @@
             judulGameAktif.textContent = `Soal ${nomorSoal} dari ${totalSoal}`;
             petunjukSoal.textContent = soalSaatIni.deskripsi;
             
-            // Update lebar progress bar
             const presentaseProgress = (nomorSoal / totalSoal) * 100;
             document.getElementById("progressBar").style.width = `${presentaseProgress}%`;
 
@@ -486,7 +470,7 @@
 
             document.getElementById("judulGameAktif").textContent = "Kuis Selesai!";
             document.getElementById("timerContainer").style.display = "none";
-            document.getElementById("progressBarContainer").style.display = "none"; // Sembunyikan progress bar di akhir
+            document.getElementById("progressBarContainer").style.display = "none";
             document.getElementById("skor").style.display = "none";
             document.getElementById("pilihanGanda").style.display = "none";
             document.getElementById("hasil").style.display = "none";
@@ -506,14 +490,12 @@
 
             playSound(gameOverSoundFile); isGameOverSoundPlayed = true;
 
-            // --- PENGIRIMAN DATA KE GOOGLE SHEETS ---
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzcZ-6282s8art10zsRbaadJsa-VDQ_HsXtfHIJFmAH-iav481nDn40hFWU_baiJUVREQ/exec'; 
             
             let dataKuis = { waktu: new Date().toLocaleString('id-ID'), nama: namaUser, skor: skorAkhir.toFixed(0), benar: skorBenar, salah: skorSalah };
             fetch(scriptURL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataKuis) })
             .then(() => console.log("Data tersimpan di server")).catch(e => console.error('Error!', e));
 
-            // Tombol Bonus eBook
             const learnBtn = document.createElement("button");
             learnBtn.textContent = "📖 Bonus e-Book Ramadhan";
             learnBtn.onclick = () => window.location.href = 'https://drive.google.com/file/d/1hWKJqHEpmtaPVIaIVBsbU_2iFRCKIZS6/view';
@@ -523,7 +505,6 @@
             document.getElementById("gameArea").appendChild(learnBtn);
         }
 
-        // --- EVENT MULAI ---
         document.getElementById("startButton").addEventListener("click", () => {
              namaUser = document.getElementById("namaPeserta").value;
              if (namaUser.trim() === "") { alert("Mohon isi nama Anda sebelum mulai!"); return; }
