@@ -210,7 +210,7 @@
             <h1 id="judulGame">Kuis Ngabuburit<br>Ramadhan 1447 H</h1>
             <p id="petunjuk" style="font-size: 16px;">Uji pengetahuan Islam kamu sambil menunggu waktu berbuka puasa!</p>
             
-            <input type="text" id="namaPeserta" placeholder="Ketik Nama (misal: Dita)"><br>
+            <input type="text" id="namaPeserta" placeholder="Ketik Nama (misal: Putra)"><br>
             <button id="startButton">Mulai Kuis</button>
             <p id="bismillah">﷽</p>
         </div>
@@ -245,79 +245,79 @@
         // --- SOAL TERBARU ---
         const dataTebakan = [
             { 
-                deskripsi: "Bila anak belum baligh dan mumayyiz kemudian berpuasa selayaknya orang dewasa, maka puasanya tidak sah namun berpahala", 
-                jawaban: "Salah", 
-                pilihan: ["Benar", "Salah"] 
+                deskripsi: "Di antara adab membaca Al-Qur'an adalah membacanya dengan tartil. Apakah makna \"tartil\" menurut penjelasan sahabat Ali bin Abi Thalib radhiyallahu 'anhu?", 
+                jawaban: "Mentajwidkan huruf dan mengetahui tempat waqaf", 
+                pilihan: ["Membaca dengan cepat agar segera khatam", "Mentajwidkan huruf dan mengetahui tempat waqaf", "Melagukan bacaan dengan berbagai langgam nada", "Membaca sambil menangis dan bersuara sangat keras"] 
             },
             { 
-                deskripsi: "Wanita yang berpuasa, 2 menit sebelum terbenamnya matahari ia haid, maka puasanya batal dan wajib qadha (menggantinya)", 
+                deskripsi: "Ciri utama surah Makkiyah yang membedakannya dengan surah Madaniyah secara umum adalah fokus pembahasannya pada persoalan...", 
+                jawaban: "Penanaman aqidah tauhid dan hari kiamat", 
+                pilihan: ["Hukum-hukum jinayat dan tata cara qishash", "Aturan pembagian harta warisan dan wasiat", "Penanaman aqidah tauhid dan hari kiamat", "Tata cara pembagian harta rampasan perang"] 
+            },
+            { 
+                deskripsi: "Rasulullah ﷺ bersabda bahwa membaca satu huruf dari kitabullah akan dibalas dengan sepuluh kebaikan. Huruf apakah yang dicontohkan Nabi ﷺ bukan sebagai satu huruf, melainkan tiga huruf terpisah?", 
+                jawaban: "Alif, Lam, Mim", 
+                pilihan: ["Alif, Lam, Mim", "Ha, Mim, 'Ain", "Ya, Sin, Nun", "Kaf, Ha, Ya"] 
+            },
+            { 
+                deskripsi: "Berdasarkan petunjuk Rasulullah ﷺ, kapankah waktu yang paling ditekankan (paling diharapkan) bagi umat Islam untuk mencari malam Lailatul Qadar?", 
+                jawaban: "Malam ganjil pada sepuluh hari terakhir Ramadhan", 
+                pilihan: ["Malam pertama hingga malam kesepuluh Ramadhan", "Malam ganjil pada sepuluh hari terakhir Ramadhan", "Setiap malam Jumat di sepanjang bulan Ramadhan", "Malam kelima belas (pertengahan) bulan Ramadhan"] 
+            },
+            { 
+                deskripsi: "Doa khusus yang diajarkan oleh Rasulullah ﷺ kepada Aisyah radhiyallahu 'anha jika mendapati malam Lailatul Qadar adalah memohon...", 
+                jawaban: "Ampunan Allah karena Allah itu Maha Pemaaf", 
+                pilihan: ["Kekayaan harta dan kelapangan rezeki duniawi", "Kemenangan atas musuh dan kejayaan umat Islam", "Ampunan Allah karena Allah itu Maha Pemaaf", "Terbebas dari siksa kubur dan azab api neraka"] 
+            },
+            { 
+                deskripsi: "Allah Ta'ala berfirman bahwa Lailatul Qadar itu \"khairun min alf syahr\" (lebih baik dari seribu bulan). Seribu bulan tersebut diperkirakan setara dengan ibadah selama kurang lebih...", 
+                jawaban: "83 tahun 4 bulan", 
+                pilihan: ["63 tahun 4 bulan", "75 tahun 6 bulan", "83 tahun 4 bulan", "99 tahun 9 bulan"] 
+            },
+            { 
+                deskripsi: "Ibadah yang sangat dianjurkan (sunnah muakkadah) bagi kaum muslimin di masjid pada sepuluh hari terakhir Ramadhan untuk meraih Lailatul Qadar adalah...", 
+                jawaban: "Berdiam diri di dalam masjid dengan niat I'tikaf", 
+                pilihan: ["Melakukan perjalanan safar untuk fokus berdakwah", "Mengkhatamkan Al-Qur'an penuh dalam satu malam", "Berdiam diri di dalam masjid dengan niat I'tikaf", "Mengumpulkan dana zakat dan menyebarkan sedekah"] 
+            },
+            { 
+                deskripsi: "Bulan Ramadhan memiliki banyak keistimewaan, salah satunya adalah bulan diturunkannya Al-Qur'an dari Lauhul Mahfudz ke Baitul Izzah di langit dunia. Peristiwa ini secara umum dikenal dengan istilah...", 
+                jawaban: "Nuzulul Qur'an atau turunnya kitab suci Al-Qur'an", 
+                pilihan: ["Isra' dan Mi'raj Nabi Muhammad ﷺ", "Fathu Makkah atau penaklukan kota Makkah", "Nuzulul Qur'an atau turunnya kitab suci Al-Qur'an", "Hijrahnya kaum muslimin menuju kota Madinah"] 
+            },
+            { 
+                deskripsi: "Salah satu waktu yang sangat mustajab untuk memanjatkan doa di hari Jumat berdasarkan petunjuk hadits Nabi ﷺ yang shahih adalah...", 
+                jawaban: "Saat-saat terakhir setelah shalat Ashar sebelum masuk Maghrib", 
+                pilihan: ["Setelah terbit matahari perlahan hingga masuk waktu Dhuha", "Saat khatib sedang membacakan khutbah Jumat yang pertama", "Saat-saat terakhir setelah shalat Ashar sebelum masuk Maghrib", "Di pertengahan malam Jumat sebelum seseorang beranjak tidur"] 
+            },
+            { 
+                deskripsi: "Rasulullah ﷺ mengajarkan sebuah doa memohon ampunan yang dijuluki sebagai \"Sayyidul Istighfar\" (Penghulu Istighfar). Doa mulia ini diawali dengan kalimat...", 
+                jawaban: "Allahumma anta rabbii laa ilaaha illaa anta khalaqtanii wa anaa 'abduka", 
+                pilihan: ["Astaghfirullahal 'adziim alladzi laa ilaaha illa huwal hayyul qoyyum", "Allahumma anta rabbii laa ilaaha illaa anta khalaqtanii wa anaa 'abduka", "Rabbanaa dzalamnaa anfusanaa wa in lam taghfir lanaa wa tarhamnaa", "Laa ilaaha illaa anta subhaanaka innii kuntu minadz dzoolimiin"] 
+            },
+            { 
+                deskripsi: "Manakah dari tindakan berikut yang termasuk adab yang benar dan dianjurkan sebelum mulai memanjatkan permohonan inti dalam sebuah doa?", 
+                jawaban: "Memuji kebesaran Allah dan bershalawat kepada Nabi Muhammad ﷺ", 
+                pilihan: ["Meminta langsung tanpa basa-basi agar tidak membuang waktu", "Memuji kebesaran Allah dan bershalawat kepada Nabi Muhammad ﷺ", "Menyebutkan seluruh dosa yang pernah dilakukan sejak usia baligh", "Mengangkat kedua tangan sangat tinggi hingga terlihat bagian ketiaknya"] 
+            },
+            { 
+                deskripsi: "Dzikir yang sunnah dibaca masing-masing sebanyak 33 kali secara berurutan setelah selesai melaksanakan shalat fardhu adalah...", 
+                jawaban: "Tasbih (Subhanallah), Tahmid (Alhamdulillah), Takbir (Allahu Akbar)", 
+                pilihan: ["Tasbih (Subhanallah), Tahmid (Alhamdulillah), Takbir (Allahu Akbar)", "Tahlil (Laa ilaaha illallah), Hauqalah (Laa hawla wa laa quwwata), Takbir", "Istighfar (Astaghfirullah), Shalawat kepada Nabi, Tasbih (Subhanallah)", "Tahmid (Alhamdulillah), Tahlil (Laa ilaaha illallah), Istighfar (Astaghfirullah)"] 
+            },
+            { 
+                deskripsi: "Makna dari syahadat \"Asyhadu anna Muhammadan Rasulullah\" adalah membenarkan apa yang beliau kabarkan, menaati apa yang beliau perintahkan, menjauhi apa yang beliau larang, dan tidak beribadah kepada Allah kecuali dengan syariat yang beliau bawa.", 
                 jawaban: "Benar", 
                 pilihan: ["Benar", "Salah"] 
             },
             { 
-                deskripsi: "Seseorang safar dari Jakarta ke Palembang menggunakan pesawat selama 30 menit, maka ia mendapatkan rukhsah boleh tidak berpuasa", 
-                jawaban: "Benar", 
-                pilihan: ["Benar", "Salah"] 
+                deskripsi: "Sebelum kiamat besar (Kubra) terjadi, akan muncul tanda-tanda besar yang mengubah tatanan alam semesta dan kehidupan dunia. Manakah dari fenomena berikut ini yang bukan merupakan bagian dari tanda-tanda besar kiamat?", 
+                jawaban: "Berlomba-lombanya para penggembala domba yang bertelanjang kaki dalam mendirikan bangunan tinggi", 
+                pilihan: ["Terbitnya matahari dari arah barat tempat ia biasanya terbenam", "Turunnya Nabi Isa 'alaihissalam di menara putih sebelah timur kota Damaskus", "Berlomba-lombanya para penggembala domba yang bertelanjang kaki dalam mendirikan bangunan tinggi", "Keluarnya Dabbah (sejenis hewan melata) dari bumi yang dapat berbicara dengan manusia"] 
             },
             { 
-                deskripsi: "Satu bulan berpuasa Ramadhan kadang 28 hari, kadang 29 hari, kadang 30 hari", 
-                jawaban: "Salah", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Nabi ﷺ dan para sahabat sudah berpuasa wajib di bulan Ramadhan sebelum beliau hijrah ke Madinah", 
-                jawaban: "Salah", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Saat berpuasa, kita diperbolehkan untuk menceburkan badan ke air atau menyiramkan ke tubuh kita agar lebih segar dan lebih kuat menyelesaikan puasa", 
-                jawaban: "Benar", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Berbohong di bulan puasa, bisa membatalkan puasa", 
-                jawaban: "Salah", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Menelan sisa makanan yang sangat kecil (misalnya sekecil biji wijen) yang terselip di gigi secara sengaja tidak membatalkan puasa, karena ukurannya terlalu kecil untuk disebut makan.", 
-                jawaban: "Salah", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Jika seorang pemuda tertidur di siang hari bulan Ramadhan lalu ia mengalami ihtilam (mimpi basah) hingga mengeluarkan air mani, maka puasanya batal karena keluarnya air mani adalah salah satu pembatal utama puasa.", 
-                jawaban: "Salah", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Saat berkumur-kumur untuk wudhu shalat Zhuhur di siang hari Ramadhan, seseorang tanpa sengaja menelan air wudhunya. Maka puasanya tetap sah.", 
-                jawaban: "Benar", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Siapakah nama nabi yang anaknya bukan seorang nabi?", 
-                jawaban: "Nabi Sulaiman 'alaihissalam", 
-                pilihan: ["Nabi Ibrahim 'alaihissalam", "Nabi Daud 'alaihissalam", "Nabi Sulaiman 'alaihissalam", "Nabi Zakaria 'alaihissalam"] 
-            },
-            { 
-                deskripsi: "Orang yang tidak berpuasa di bulan Ramadhan karena sakit (yang masih ada harapan sembuh secara medis) atau karena sedang dalam perjalanan jauh (safar), wajib mengganti (qadha) puasanya tersebut di hari lain setelah Ramadhan dan tidak sah jika ia hanya menggantinya dengan membayar fidyah.", 
-                jawaban: "Benar", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Dalam pelaksanaan shalat fardhu berjamaah di masjid, anak-anak kecil laki-laki yang sudah mumayyiz (bisa membedakan baik dan buruk, serta mengerti adab shalat) diwajibkan untuk selalu berada di shaf paling belakang dan tidak sah shalatnya jika mengisi kekosongan di shaf orang dewasa.", 
-                jawaban: "Salah", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Apabila seorang makmum yang masbuq (terlambat) mendapati imam sedang dalam posisi ruku', dan makmum tersebut berhasil melakukan ruku' yang sempurna (thuma'ninah) bersama imam sebelum imam bangkit berdiri (i'tidal), maka makmum itu dihitung telah mendapatkan rakaat tersebut.", 
-                jawaban: "Benar", 
-                pilihan: ["Benar", "Salah"] 
-            },
-            { 
-                deskripsi: "Seseorang yang mengucapkan lafaz Laa ilaaha illallah dengan lisannya namun di dalam hatinya ia membenci salah satu ajaran atau syariat yang dibawa oleh Rasulullah ﷺ (meskipun ia mengamalkannya), maka syahadatnya tetap sah dan ia dihukumi sebagai seorang mukmin yang sempurna.", 
-                jawaban: "Salah", 
-                pilihan: ["Benar", "Salah"] 
+                deskripsi: "Seseorang memiliki tabungan emas murni seberat 100 gram yang telah disimpan selama lebih dari satu tahun (mencapai haul). Jika harga emas saat itu adalah Rp1.000.000 per gram, berapakah zakat yang wajib ia keluarkan?", 
+                jawaban: "Rp2.500.000", 
+                pilihan: ["Rp1.000.000", "Rp2.000.000", "Rp2.500.000", "Rp10.000.000"] 
             }
         ];
 
@@ -500,7 +500,7 @@
 
             const learnBtn = document.createElement("button");
             learnBtn.textContent = "📖 Bonus e-Book Ramadhan";
-            learnBtn.onclick = () => window.location.href = 'https://drive.google.com/file/d/1hWKJqHEpmtaPVIaIVBsbU_2iFRCKIZS6/view';
+            learnBtn.onclick = () => window.location.href = 'https://drive.google.com/file/d/1FXjObVoQGFoJCu8008AmM2bwE3z2-nzr/view?usp=sharing';
             Object.assign(learnBtn.style, { fontSize: "16px", padding: "12px 20px", marginTop: "30px", border: "none", borderRadius: "50px", background: "linear-gradient(135deg, #F5D061, #e6b12c)", color: "#1a2a26", cursor: "pointer", fontWeight: "bold", transition: "0.3s", boxShadow: "0 4px 15px rgba(245, 208, 97, 0.4)" });
             learnBtn.onmouseover = () => learnBtn.style.transform = "scale(1.05)";
             learnBtn.onmouseout = () => learnBtn.style.transform = "scale(1)";
