@@ -207,10 +207,10 @@
 
     <div id="gameArea">
         <div id="startScreen" class="fade-in-up">
-            <h1 id="judulGame">Kuis Ngabuburit<br>Ramadhan 1447 H</h1>
+            <h1 id="judulGame">Kuis Ngabuburit<br>  Edisi Khusus Idul Fitri 1447 H</h1>
             <p id="petunjuk" style="font-size: 16px;">Uji pengetahuan Islam kamu sambil menunggu waktu berbuka puasa!</p>
             
-            <input type="text" id="namaPeserta" placeholder="Ketik Nama (misal: Putra)"><br>
+            <input type="text" id="namaPeserta" placeholder="Ketik Nama (misal: Gibran)"><br>
             <button id="startButton">Mulai Kuis</button>
             <p id="bismillah">﷽</p>
         </div>
@@ -245,79 +245,79 @@
         // --- SOAL TERBARU ---
         const dataTebakan = [
             { 
-                deskripsi: "Berdoa, menyembelih kurban, dan bernadzar murni hanya ditujukan kepada Allah semata merupakan bentuk pengamalan dari tauhid...", 
-                jawaban: "Uluhiyah", 
-                pilihan: ["Rububiyah", "Uluhiyah", "Asma wa Sifat", "Mulkiyah"] 
+                deskripsi: "Sunnah yang sangat dianjurkan oleh Nabi ﷺ sebelum berangkat ke tempat shalat Idul Fitri adalah...", 
+                jawaban: "Makan kurma dalam jumlah yang ganjil", 
+                pilihan: ["Berpuasa setengah hari hingga selesai shalat", "Makan kurma dalam jumlah yang ganjil", "Minum air zam-zam dan segelas susu", "Bersedekah makanan kepada tetangga"] 
             },
             { 
-                deskripsi: "Bersumpah dengan menyebut nama selain Allah (misalnya berkata 'Demi Ka'bah' atau 'Demi ayahku') menurut syariat Islam termasuk dalam kategori perbuatan...", 
-                jawaban: "Syirik Ashghar", 
-                pilihan: ["Syirik Akbar", "Syirik Ashghar", "Bid'ah Dhalalah", "Kufur Nikmat"] 
+                deskripsi: "Bagaimana hukum melaksanakan ibadah puasa bertepatan pada tanggal 1 Syawal (Hari Raya Idul Fitri)?", 
+                jawaban: "Haram dan puasanya tidak dinilai sah", 
+                pilihan: ["Sunnah bagi yang tidak ikut shalat Id", "Mubah jika tujuannya membayar qadha", "Makruh karena ini adalah hari kemenangan", "Haram dan puasanya tidak dinilai sah"] 
             },
             { 
-                deskripsi: "Seseorang sengaja memperindah gerakan shalatnya karena sadar sedang diperhatikan oleh orang lain agar mendapat pujian. Perbuatan ini adalah contoh dari...", 
-                jawaban: "Penyakit Riya'", 
-                pilihan: ["Penyakit Hasad", "Penyakit Riya'", "Penyakit Ujub", "Penyakit Kibr"] 
+                deskripsi: "Saat berangkat menuju dan pulang dari tempat shalat Idul Fitri, kaum muslimin disunnahkan untuk...", 
+                jawaban: "Melewati rute jalan yang berbeda arah", 
+                pilihan: ["Berjalan beriringan di belakang imam", "Melewati rute jalan yang sama persis", "Melewati rute jalan yang berbeda arah", "Menggunakan kendaraan yang terbaik"] 
             },
             { 
-                deskripsi: "Di Padang Mahsyar nanti, Nabi Muhammad ﷺ akan bersujud dan memuji Allah untuk memberikan Syafaat Agung (Syafa'at Uzhma) agar Allah segera...", 
-                jawaban: "Memulai pengadilan (hisab) bagi umat manusia", 
-                pilihan: ["Memasukkan seluruh umatnya ke surga firdaus", "Mengeluarkan umatnya dari siksaan api neraka", "Memulai pengadilan (hisab) bagi umat manusia", "Mengampuni semua dosa orang-orang musyrikin"] 
+                deskripsi: "Bagaimana petunjuk syariat bagi wanita yang sedang dalam keadaan haid saat hari raya Idul Fitri tiba?", 
+                jawaban: "Hadir di lapangan tapi menjauh dari shaf shalat", 
+                pilihan: ["Wajib berdiam diri di dalam area kamarnya", "Boleh ke masjid asal memakai hijab rapat", "Hadir di lapangan tapi menjauh dari shaf shalat", "Ikut shalat Idul Fitri tanpa kewajiban wudhu"] 
             },
             { 
-                deskripsi: "Meyakini bahwa segala sesuatu yang terjadi di alam semesta telah tertulis di Lauhul Mahfudz merupakan rukun iman kepada...", 
-                jawaban: "Qada dan Qadar Allah", 
-                pilihan: ["Malaikat-malaikat Allah", "Kitab-kitab Suci Allah", "Hari Kiamat (Hari Akhir)", "Qada dan Qadar Allah"] 
+                deskripsi: "Kapan waktu yang paling tepat dimulainya kumandang takbir (takbiran) untuk menyambut Idul Fitri?", 
+                jawaban: "Sejak terbenam matahari di malam 1 Syawal", 
+                pilihan: ["Setelah shalat Ashar di hari terakhir Ramadhan", "Sejak terbenam matahari di malam 1 Syawal", "Saat masuk pertengahan malam tanggal 1 Syawal", "Pagi hari saat berjalan menuju tempat shalat Id"] 
             },
             { 
-                deskripsi: "Datang ke tempat dukun atau peramal dan membenarkan ucapannya tentang perkara gaib di masa depan dapat mengakibatkan pelakunya...", 
-                jawaban: "Kufur terhadap ajaran yang dibawa Muhammad ﷺ", 
-                pilihan: ["Batal wudhunya selama satu bulan penuh", "Shalatnya tidak akan diterima selama 40 hari", "Kufur terhadap ajaran yang dibawa Muhammad ﷺ", "Wajib membayar denda kafarat yang sangat besar"] 
+                deskripsi: "Apa anjuran sunnah terkait pakaian yang dikenakan saat berangkat menunaikan shalat Idul Fitri?", 
+                jawaban: "Memakai pakaian paling bagus yang dimiliki", 
+                pilihan: ["Wajib memakai pakaian baru yang belum dipakai", "Mengenakan pakaian berwarna putih polos bersih", "Memakai pakaian paling bagus yang dimiliki", "Memakai pakaian seragam agar terlihat kompak"] 
             },
             { 
-                deskripsi: "Menetapkan nama dan sifat Allah sesuai dengan yang disebutkan dalam Al-Qur'an dan Sunnah tanpa mengubah maknanya sama sekali disebut tauhid...", 
-                jawaban: "Asma wa Sifat", 
-                pilihan: ["Uluhiyah", "Rububiyah", "Asma wa Sifat", "Hakimiyah"] 
+                deskripsi: "Berdasarkan praktik Rasulullah ﷺ, di manakah tempat yang paling afdhal untuk melaksanakan shalat Idul Fitri?", 
+                jawaban: "Di tanah lapang atau mushalla pada ruang terbuka", 
+                pilihan: ["Di dalam Masjid Nabawi yang penuh dengan berkah", "Di masjid jami' terbesar yang ada di pusat kota", "Di tanah lapang atau mushalla pada ruang terbuka", "Di pelataran Ka'bah bagi penduduk sekitar Makkah"] 
             },
             { 
-                deskripsi: "Zakat Fitrah memiliki aturan penyaluran yang lebih spesifik dibandingkan Zakat Maal. Siapakah golongan yang paling dikhususkan menerimanya?", 
-                jawaban: "Orang Fakir dan Miskin", 
-                pilihan: ["Orang Fakir dan Miskin", "Para Amil dan Muallaf", "Para Gharim dan Musafir", "Hamba sahaya (Riqab)"] 
+                deskripsi: "Jika shalat Idul Fitri dilaksanakan di tanah lapang, bagaimana hukum shalat sunnah qabliyah (sebelum shalat Id)?", 
+                jawaban: "Tidak disyariatkan sama sekali (tidak ada)", 
+                pilihan: ["Sunnah muakkadah sebanyak dua rakaat", "Wajib sebagai pengganti Tahiyatul Masjid", "Makruh jika dilakukan secara berjamaah", "Tidak disyariatkan sama sekali (tidak ada)"] 
             },
             { 
-                deskripsi: "Salah satu adab dan sunnah yang sangat dianjurkan sebelum berangkat untuk menunaikan ibadah shalat Idul Fitri di pagi hari adalah...", 
-                jawaban: "Mandi besar (janabah) dan memakai wewangian", 
-                pilihan: ["Berpuasa penuh hingga matahari berada di tengah", "Mandi besar (janabah) dan memakai wewangian", "Membaca surah Al-Kahfi secara utuh di rumah", "Tidur sejenak di dalam area pelataran masjid"] 
+                deskripsi: "Seseorang datang terlambat ke lapangan dan mendapati imam sudah selesai shalat Idul Fitri. Apa yang harus dilakukannya?", 
+                jawaban: "Duduk mendengarkan khutbah, lalu qadha shalat 2 rakaat", 
+                pilihan: ["Langsung pulang karena waktu shalat Id sudah habis", "Duduk mendengarkan khutbah, lalu qadha shalat 2 rakaat", "Shalat sunnah Dhuha empat rakaat di lapangan tersebut", "Meminta imam untuk mengulang shalat khusus untuknya"] 
             },
             { 
-                deskripsi: "Jika shalat Idul Fitri dilaksanakan di lapangan, dan seseorang datang terlambat saat jamaah sudah bubar, apa yang disyariatkan baginya?", 
-                jawaban: "Mengqadha shalat Id dua rakaat sendiri", 
-                pilihan: ["Mengqadha shalat Id dua rakaat sendiri", "Shalat Idul Fitrinya gugur tanpa perlu qadha", "Menggantinya dengan puasa sunnah Syawal", "Membayar fidyah kepada orang fakir dan miskin"] 
+                deskripsi: "Barangsiapa berpuasa Ramadhan lalu mengikutinya dengan puasa enam hari di bulan Syawal, maka pahalanya seperti...", 
+                jawaban: "Berpuasa selama satu tahun penuh", 
+                pilihan: ["Berpuasa selama satu tahun penuh", "Memerdekakan seribu orang budak", "Berhaji dan umrah secara sempurna", "Menghidupkan malam Lailatul Qadar"] 
             },
             { 
-                deskripsi: "Salah satu hal yang dapat membatalkan keislaman seseorang secara mutlak (Nawaqidhul Islam) menurut kesepakatan ulama adalah...", 
-                jawaban: "Mengolok-olok syariat Rasulullah ﷺ", 
-                pilihan: ["Meninggalkan shalat sunnah rawatib", "Mengolok-olok syariat Rasulullah ﷺ", "Berbohong saat sedang berdagang", "Minum khamr karena hawa nafsu"] 
+                deskripsi: "Bagaimanakah tata cara pelaksanaan puasa sunnah enam hari di bulan Syawal yang diperbolehkan dalam syariat?", 
+                jawaban: "Boleh dilakukan berurutan atau terpisah-pisah", 
+                pilihan: ["Wajib dilakukan secara berurutan tanpa jeda", "Boleh dilakukan berurutan atau terpisah-pisah", "Harus dilakukan pada pertengahan bulan (Ayyamul Bidh)", "Wajib dilakukan tepat pada tanggal 2 hingga 7 Syawal"] 
             },
             { 
-                deskripsi: "'Engkau beribadah kepada Allah seolah-olah engkau melihat-Nya, dan jika engkau tidak melihat-Nya, maka yakinlah Dia melihatmu.' Ini adalah definisi dari...", 
-                jawaban: "Tingkatan Ihsan", 
-                pilihan: ["Tingkatan Islam", "Tingkatan Iman", "Tingkatan Ihsan", "Tingkatan Ikhlas"] 
+                deskripsi: "Jika seseorang memiliki utang (qadha) puasa Ramadhan, manakah yang lebih utama untuk dikerjakan terlebih dahulu di bulan Syawal?", 
+                jawaban: "Qadha puasa Ramadhan dahulu, baru puasa Syawal", 
+                pilihan: ["Puasa Syawal dahulu, lalu qadha di bulan lainnya", "Qadha puasa Ramadhan dahulu, baru puasa Syawal", "Menggabungkan kedua niat puasa di dalam satu hari", "Membayar fidyah saja sebagai ganti qadha puasanya"] 
             },
             { 
-                deskripsi: "Malaikat Munkar dan Nakir adalah malaikat utusan Allah yang memiliki tugas sangat spesifik di alam barzah (alam kubur), yaitu untuk...", 
-                jawaban: "Memberikan pertanyaan kepada ahli kubur", 
-                pilihan: ["Meniup sangkakala saat hari kiamat tiba", "Menjaga ketat pintu surga dan neraka", "Memberikan pertanyaan kepada ahli kubur", "Mencatat amal baik dan amal buruk manusia"] 
+                deskripsi: "Manakah di antara kerabat wanita berikut ini yang bukan termasuk mahram (boleh dinikahi) bagi seorang laki-laki?", 
+                jawaban: "Anak perempuan dari paman atau bibi (Sepupu)", 
+                pilihan: ["Bibi kandung dari jalur pihak ibu (Khalah)", "Bibi kandung dari jalur pihak ayah (Ammah)", "Anak perempuan dari paman atau bibi (Sepupu)", "Keponakan perempuan dari jalur saudara kandung"] 
             },
             { 
-                deskripsi: "Membayar Zakat Fitrah pada satu atau dua hari sebelum hari raya Idul Fitri (yakni tanggal 28 atau 29 Ramadhan) hukumnya adalah...", 
-                jawaban: "Diperbolehkan (termasuk waktu mubah)", 
-                pilihan: ["Makruh karena dianggap terlalu cepat", "Diperbolehkan (termasuk waktu mubah)", "Haram dan wajib diulangi pembayarannya", "Waktu yang paling diutamakan (afdhal)"] 
+                deskripsi: "Di antara seorang laki-laki dan kerabat wanita yang berstatus bukan mahram (seperti sepupu), maka syariat memperbolehkan keduanya untuk...", 
+                jawaban: "Melangsungkan akad nikah satu sama lainnya", 
+                pilihan: ["Bersalaman secara langsung saat momen Idul Fitri", "Melangsungkan akad nikah satu sama lainnya", "Berdua-duaan (khalwat) di dalam sebuah ruangan tertutup", "Melepas hijab karena masih terhitung keluarga besar"] 
             },
             { 
-                deskripsi: "Kapan waktu paling utama (sunnah) untuk mengeluarkan zakat fitrah?", 
-                jawaban: "Pagi hari sebelum shalat Id", 
-                pilihan: ["Awal bulan Ramadhan", "Malam takbiran Idul Fitri", "Pagi hari sebelum shalat Id", "Setelah selesai shalat Id"] 
+                deskripsi: "Bagaimanakah status hukum saudara kandung suami (kakak/adik ipar laki-laki) bagi seorang istri di dalam rumah?", 
+                jawaban: "Bukan mahram, bahkan Nabi ﷺ menyebut ipar sebagai \"maut\" karena sangat rawan fitnah", 
+                pilihan: ["Ia adalah mahram selamanya sehingga sang istri boleh melepas hijab di depannya", "Ia adalah mahram sementara sehingga istri boleh bersalaman dan bepergian dengannya", "Bukan mahram, bahkan Nabi ﷺ menyebut ipar sebagai \"maut\" karena sangat rawan fitnah", "Bukan mahram, namun istri tidak diwajibkan menutup aurat secara sempurna di depannya"] 
             }
         ];
 
@@ -466,9 +466,9 @@
             const skorAkhir = totalSoal > 0 ? (skorBenar / totalSoal) * 100 : 0;
             let warnaSkor, komentar, gameOverSoundFile;
 
-            if (skorAkhir < 50) { gameOverSoundFile = 'ast.mp3'; komentar = "Belajar lagi ya.... 😊📚"; warnaSkor = "#ff6b6b"; }
-            else if (skorAkhir <= 84) { gameOverSoundFile = 'alh.mp3'; komentar = "Alhamdulillah, Mantap! 👍"; warnaSkor = "#F5D061"; }
-            else { gameOverSoundFile = 'masy.mp3'; komentar = "MasyaAllah, Kamu Luar Biasa! 🌟🏆"; warnaSkor = "#51cf66"; }
+            if (skorAkhir < 50) { gameOverSoundFile = 'ast.mp3'; komentar = "Belajar lagi ya.... 😊📚<br>Admin mengucapkan selamat Idul Fitri 1447 H, <br>Taqabbalallahu Minna Waminkum"; warnaSkor = "#ff6b6b"; }
+else if (skorAkhir <= 84) { gameOverSoundFile = 'alh.mp3'; komentar = "Alhamdulillah, Mantap! 👍<br>Admin mengucapkan selamat Idul Fitri 1447 H, <br>Taqabbalallahu Minna Waminkum"; warnaSkor = "#F5D061"; }
+else { gameOverSoundFile = 'masy.mp3'; komentar = "MasyaAllah, Kamu Luar Biasa! 🌟🏆<br>Admin mengucapkan selamat Idul Fitri 1447 H, <br>Taqabbalallahu Minna Waminkum"; warnaSkor = "#51cf66"; }
 
             document.getElementById("judulGameAktif").textContent = "Kuis Selesai!";
             document.getElementById("timerContainer").style.display = "none";
@@ -499,8 +499,8 @@
             .then(() => console.log("Data tersimpan di server")).catch(e => console.error('Error!', e));
 
             const learnBtn = document.createElement("button");
-            learnBtn.textContent = "📖 Bonus e-Book Islami: Bekal Ramadhan";
-            learnBtn.onclick = () => window.location.href = 'https://drive.google.com/file/d/1YrA9TZuYZAI7vI_wlh9BfmKCr4EuJF5_/view?usp=sharing';
+            learnBtn.textContent = "📖 Bonus e-Book Islami: Panduan Zakat Fithri dan Sholat Idul Fitri";
+            learnBtn.onclick = () => window.location.href = 'https://drive.google.com/file/d/1imLxIzEOObSOuP6MMDEskOVN2Adf11i8/view?usp=sharing';
             Object.assign(learnBtn.style, { fontSize: "16px", padding: "12px 20px", marginTop: "30px", border: "none", borderRadius: "50px", background: "linear-gradient(135deg, #F5D061, #e6b12c)", color: "#1a2a26", cursor: "pointer", fontWeight: "bold", transition: "0.3s", boxShadow: "0 4px 15px rgba(245, 208, 97, 0.4)" });
             learnBtn.onmouseover = () => learnBtn.style.transform = "scale(1.05)";
             learnBtn.onmouseout = () => learnBtn.style.transform = "scale(1)";
