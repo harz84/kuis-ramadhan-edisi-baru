@@ -466,9 +466,9 @@
             const skorAkhir = totalSoal > 0 ? (skorBenar / totalSoal) * 100 : 0;
             let warnaSkor, komentar, gameOverSoundFile;
 
-            if (skorAkhir < 50) { gameOverSoundFile = 'GC0005-DB15.m4a'; komentar = "Belajar lagi ya.... 😊📚<br>Admin mengucapkan selamat Idul Fitri 1447 H, <br>Taqabbalallahu Minna Waminkum"; warnaSkor = "#ff6b6b"; }
-else if (skorAkhir <= 84) { gameOverSoundFile = 'GC0005-DB15.m4a'; komentar = "Alhamdulillah, Mantap! 👍<br>Admin mengucapkan selamat Idul Fitri 1447 H, <br>Taqabbalallahu Minna Waminkum"; warnaSkor = "#F5D061"; }
-else { gameOverSoundFile = 'GC0005-DB15.m4a'; komentar = "MasyaAllah, Kamu Luar Biasa! 🌟🏆<br>Admin mengucapkan selamat Idul Fitri 1447 H, <br>Taqabbalallahu Minna Waminkum"; warnaSkor = "#51cf66"; }
+            if (skorAkhir < 50) { gameOverSoundFile = 'GC0005-DB15.m4a'; komentar = "Belajar lagi ya.... 😊📚<br>Admin mengucapkan selamat Idul Fitri 1447 H, <br>Taqabbalallahu Minna Waminkum <br>Sampai jumpa lagi tahun depan Insya Allah 🤗"; warnaSkor = "#ff6b6b"; }
+else if (skorAkhir <= 84) { gameOverSoundFile = 'GC0005-DB15.m4a'; komentar = "Alhamdulillah, Mantap! 👍<br>Admin mengucapkan selamat Idul Fitri 1447 H, <br>Taqabbalallahu Minna Waminkum<br>Sampai jumpa lagi tahun depan Insya Allah 🤗"; warnaSkor = "#F5D061"; }
+else { gameOverSoundFile = 'GC0005-DB15.m4a'; komentar = "MasyaAllah, Kamu Luar Biasa! 🌟🏆<br>Admin mengucapkan selamat Idul Fitri 1447 H, <br>Taqabbalallahu Minna Waminkum<br>Sampai jumpa lagi tahun depan Insya Allah 🤗"; warnaSkor = "#51cf66"; }
 
             document.getElementById("judulGameAktif").textContent = "Kuis Selesai!";
             document.getElementById("timerContainer").style.display = "none";
@@ -485,7 +485,7 @@ else { gameOverSoundFile = 'GC0005-DB15.m4a'; komentar = "MasyaAllah, Kamu Luar 
                     ✅ Benar: <b>${skorBenar}</b><br>
                     ❌ Salah: <b>${skorSalah}</b>
                 </div>
-                <div style="margin-top: 20px; font-size: 22px; color: #fff;">${komentar}</div>
+                <div style="margin-top: 20px; font-size: 15px; color: #fff;">${komentar}</div>
             `;
             triggerAnimation("judulSoalWrapper");
             triggerAnimation("petunjukSoal");
